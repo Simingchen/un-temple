@@ -1,0 +1,51 @@
+<view class="search-bar-box">
+    <view class="hr130"></view>
+    <view class="search-bar {{isSHowSearch? 'focus': ''}}">
+        <view class="search-box flex-box">
+            <view class="form flex-box flex-item">
+                <input placeholder='请输入关键字搜索' focus="{{isSHowSearch}}" bindinput="bindKeyInput" value="{{searchTxt}}" confirm-type="search" class="flex-item" maxlength="20"></input>
+                <view class="close" bindtap='clear' bindconfirm="confirmSearch"></view>
+            </view> 
+            <view class="cancel" bindtap='toggleSearch'>
+                取消
+            </view>
+        </view>
+        <view class="search-input form" bindtap='toggleSearch'>
+            <text>请输入关键字搜索</text>
+        </view>
+    </view>
+    <view class="search-con" wx:if="{{isSHowSearch}}">
+        <view class="panel search-line lately-search" wx:if="{{history.length > 0}}">
+            <view class="title">
+                最近搜索
+                <view class="del" bindtap='clearHistory'></view>
+            </view>
+            <view class="list-con clearfix">
+                <view class="item" wx:for="{{history}}" wx:key="index">
+                    {{item}}
+                </view>
+            </view>
+        </view>
+        <view class="panel search-line hot-search">
+            <view class="title">
+                热门搜索
+            </view>
+            <view class="list-con clearfix">
+                <view class="item">阿斯顿发生的发生兜风</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="goods-list" wx:if="{{!isSHowSearch}}" wx:for="{{goodsList}}" wx:key="{{index}}" wx:for-item="goods">
+    <navigator class="goods-item" hover-class="none" url="/pages/goods/detail/index">
+        <image class="goods-img" src="{{goods.goods_cover}}"></image>
+        <view class="con">
+            <view class="goods-name ellipsis2">
+                {{goods.goods_name}}
+            </view>
+            <view class="goods-price">
+                <text>¥{{goods.goods_price}}</text>
+            </view>
+        </view>
+    </navigator>
+</view>

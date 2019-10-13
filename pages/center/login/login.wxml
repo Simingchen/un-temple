@@ -1,0 +1,19 @@
+<view class="page login-page">
+    <view class="login-form">
+        <view>
+            <input class="input-row" data-type="user" bindinput="bindInput" type="text" maxlength="30" placeholder="输入手机号" value="1355643758"/>
+        </view>
+        <view>
+            <input  class="input-row" data-type="password" bindinput="bindInput" type="password" maxlength="20" placeholder="输入密码"/>
+        </view>
+        <button type="button" class="btn login_btn" bindtap="login">登录</button>
+        <view class="bot clearfix">
+            <navigator class="fl sign" url="/pages/center/register/register" hover-class="none">
+                立即注册
+            </navigator>
+            <navigator class="fr forget" url="/pages/center/forget/forget" hover-class="none">
+                忘记密码?
+            </navigator>
+        </view>
+    </view>
+</view>

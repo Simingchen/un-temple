@@ -1,0 +1,48 @@
+<view class="top">
+    <image src="http://qn.fayuanhui.cn/c701c321e8760d2d54f7cedf25726cf1.jpg"></image>
+</view>
+<view class="panel main-con">
+    <view class="temp-tit">上海会龙寺</view>
+    <view class="flex-box">
+        <view class="temp-img flex-item">
+            <view class="img-box active"><image src="http://qn.fayuanhui.cn/WechatIMG1197r.jpg"></image></view>
+            <view class="temp-name">上海会龙寺-西</view>
+            <view class="core-light flex-box">
+                <view class="core-light-item flex-item">
+                    <image  src="../../img/3425.png"></image>
+                    <text >74</text>
+                </view>
+                <view class="core-light-item flex-item">
+                    <image src="http://wx.fayuanhui.cn/static/images/light4_n_icon@2x.png"></image>
+                    <text >1546</text>
+                </view>
+            </view>
+        </view>
+        <view class="temp-img flex-item">
+            <view class="img-box"><image src="http://qn.fayuanhui.cn/WechatIMG1196l.jpg"></image></view>
+            <view class="temp-name">上海会龙寺-东</view>
+            <view class="core-light flex-box">
+                <view class="core-light-item flex-item">
+                    <image  src="../../img/3425.png"> </image>
+                    <text >74</text>
+                </view>
+                <view class="core-light-item flex-item">
+                    <image src="http://wx.fayuanhui.cn/static/images/light4_n_icon@2x.png"></image>
+                    <text >1546</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="panel detail-con">
+    <view class="detail-tit">关于寺院</view>
+    <view class="detail-master">住持：戒宝法师</view>
+</view>
+<view class="footer-box">
+    <view class="hr28"></view>
+    <view class="footer flex-box">
+        <navigator class="flex-item b2" url="/pages/lampTemple/orderStamp/index">预约</navigator>
+        <navigator class="flex-item b1" url="/pages/lampTemple/orderStamp/index">供奉佛龕</navigator>
+        <navigator class="flex-item b2" url="/pages/lampTemple/orderLamp/index">我要供灯</navigator>
+    </view>
+</view>

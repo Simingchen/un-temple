@@ -1,0 +1,14 @@
+.panel{
+    padding: 30rpx;
+}
+.textarea{
+    width:100%;
+    height:300rpx;
+}
+.input{
+    width: 100%;
+    height:30rpx;
+}
+.save-btn{
+    margin-top:80rpx;   
+}

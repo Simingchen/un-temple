@@ -1,0 +1,7 @@
+<view class="panel">
+    <textarea class="textarea" data-type="mes"  bindinput="bindInput" placeholder='请留下您的宝贵意见和建议，我们将努力改进' maxlength='500'></textarea>
+</view>
+<view class="panel">
+    <input class="input" data-type="phone" type="number"  bindinput="bindInput" placeholder='请留下您的手机号码，以便我们回复您' maxlength='11'></input>
+</view>
+<button type="button" class="btn save-btn" bindtap="saveMsg">提交</button>

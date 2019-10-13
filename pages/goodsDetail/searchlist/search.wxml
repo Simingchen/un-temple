@@ -1,0 +1,51 @@
+<view class="wrap">
+    <!--搜索框  -->
+    <view class='search-input'>
+        <image src='../images/icon-search.png'></image>
+        <!-- <view class="input"></view> -->
+        <navigator open-type="redirect" url="/pages/goodsDetail/search/search" class="input" hover-class="none"></navigator>
+    </view>
+    <!--类目  -->
+    <view class="models bgf" wx:for="{{models}}" wx:key="{{index}}" wx:for-item="models">
+        <view class="title">
+            <view class="txt">{{models.name}}</view>
+        </view>
+        <view class="model-list clearfix">
+            <view class="model-item" wx:for="{{models.list}}" wx:key="{{index}}" wx:for-item="item">
+                <image class="pic" src="{{item.pic}}"></image>
+                <view class="name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="tab-h flex-box">
+        <view class="tab-item flex-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">
+            按销量
+            <view class="arrow"></view>
+        </view>
+        <view class="tab-item flex-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">
+            按信用
+            <view class="arrow"></view>
+        </view>
+        <view class="tab-item flex-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">
+            按价格
+            <view class="arrow"></view>
+        </view>
+    </view>
+    <!--列表  -->
+    <view class="goods-list clearfix">
+        <navigator class="item-ans" hover-class="none" url="/pages/goodsDetail/index?index={{goods.Index}}&number={{goods.Number}}" wx:for="{{goodsList}}" wx:key="{{index}}" wx:for-item="goods">
+            <view class="avatar">
+                <image class="img" src="{{goods.Img}}"></image>
+            </view>
+            <view class="expertInfo">
+                <!-- <view class="name">GUCCI/古奇</view> -->
+                <view class="tag ellipsis">{{goods.Name}}</view>
+                <view class="price">￥{{goods.Price}}</view>
+            </view>
+        </navigator>
+    </view>
+</view>
+<!--底部  -->
+<view class="footer-box">
+    <tabBar id='tabBar'></tabBar>
+</view>

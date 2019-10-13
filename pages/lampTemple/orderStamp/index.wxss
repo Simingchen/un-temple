@@ -1,0 +1,68 @@
+.panel{
+    padding:30rpx;
+}
+.goodsItem .img{
+    float:left;
+    width:200rpx;
+    height:200rpx;
+    margin-right: 30rpx;
+    background: #999;
+}
+.goodsItem .tit{
+    line-height: 65rpx;
+    font-weight:600;
+    font-size: 38rpx;
+}
+.item-sub{
+    font-size: 34rpx;
+    color:#999;
+    line-height: 65rpx;
+}
+.goodsItem .left{
+    font-size: 34rpx;
+    color:#803437;
+    line-height: 65rpx;
+}
+.input-box .tit{
+    color:#666;
+}
+.input-box input{
+    display: block;
+    height:112rpx;
+    line-height: 112rpx;
+    margin-bottom:40rpx;
+    border-bottom:2rpx solid #e9e9e9;
+}
+.tips{
+    color:#bd151d;
+    line-height: 50rpx;
+}
+.hr28{
+    height: 120rpx;
+}
+.footer{
+    position: fixed;
+    width:100%;
+    bottom:0;
+    height: 100rpx;
+    font-size: 36rpx;
+    line-height: 100rpx;
+    color: #fff;
+}
+.footer .b1{
+    font-size: 30rpx;
+    padding-left:30rpx;
+    color:#2c3e50;
+    background: #fff;
+}
+.footer .b2{
+    width:340rpx;
+    text-align: center;
+    background: #bd151d;
+}
+.footer .total{
+    margin-left:25rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    color:#bd151d;
+}

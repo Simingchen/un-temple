@@ -1,0 +1,32 @@
+<view class="goodsItem panel">
+    <image class="img" src="{{item.Img}}"></image>
+    <view class="con ofh">
+        <view class="tit ellipsis">揭阳普宁寺寺庙</view>
+        <view class="item-sub">
+            揭阳普宁寺——左
+        </view>
+        <view class="left">
+            剩余冠名：30
+        </view>
+    </view>
+</view>
+<view class="panel">
+    <view class="input-box">
+        <view class="tit">冠名文字</view>
+        <input placeholder='请输入要冠名的文字，最多15个字' maxlength='15' data-type="name" bindinput="changeMsg"></input>
+    </view>
+    <view class="input-box">
+        <view class="tit">LED显示</view>
+        <input placeholder='请输入LED显示的文字，最多15个字' maxlength='25' data-type="led" bindinput="changeMsg"></input>
+    </view>
+    <view class="tips">
+        特别注意：由于微信官方单日支付限额，所以该笔订单分三次支付，平均每次支付6666元。
+    </view>
+</view>
+<view class="footer-box">
+    <view class="hr28"></view>
+    <view class="footer flex-box">
+        <view class="flex-item b1">合计 <text class="total">¥19998</text></view>
+        <view class="b2" bindtap='saveOrder'>确认支付</view>
+    </view>
+</view>

@@ -1,0 +1,148 @@
+<!--index.wxml-->
+<view class='goods'>
+    <view class='g-ban'>
+        <image class="main-img" src='{{goods.Img}}'></image>
+    </view>
+    <view class='g-detail'>
+        <view class='g-pad'>
+            <view class='g-title'>{{goods.Name}}</view>
+            <view class='g-price'>￥{{goods.Price}}</view>
+            <view class='g-way'>
+                <view class='g-fre'>运费：0</view>
+                <view class='g-sales'>月销{{goods.SaleCount}}笔</view>
+            </view>
+        </view>
+        <view class='g-promise'>
+            <image src='images/icon-real.png'></image>
+            <view>正品保证</view>
+        </view>
+        <view class='g-params'>
+            <!-- <view class="line-item arrow">产品属性：20ml</view> -->
+            <view class="line-item arrow" data-type="1" bindtap="toogleParams">产品参数</view>
+        </view>
+        <!--评价start  -->
+        <!-- <view class='g-advance'>
+            <view class='line'></view>
+            <view class='tit'>
+                <image src='images/icon-good.png'></image>
+                <view>评价</view>
+            </view>
+        </view>
+        <view class='g-adinfo'>
+            <view class='g-adtitle'>
+                宝贝评价(220)
+            </view>
+            <view class='g-adcont'>
+                <view class='g-usertit'>
+                    <view class='g-userinfo'>
+                        <image src='images/icon-head.jpg'></image>
+                        <view>内倒角</view>
+                    </view>
+                    <view class='g-time'>08-01 15:29</view>
+                </view>
+                <view class='g-userments'>
+                    包装很高大上、整体还行
+                </view>
+                <view class='g-attr'>
+                    属性：30ml
+                </view>
+            </view>
+            <view class='g-view'>
+                <navigator hover-class="none" url="/pages/shopenv/index">
+                    查看全部评价
+                </navigator>
+            </view>
+        </view> -->
+        <!--评价结束  -->
+        <!--详情start  -->
+        <view class='g-advance'>
+            <view class='line'></view>
+            <view class='tit'>
+                <image src='images/icon-detail.png'></image>
+                <view>详情</view>
+            </view>
+        </view>
+        <view class='g-goodpic tac'>
+            <image src='{{item}}'  wx:for="{{imgList}}" wx:key="index" mode="widthFix"></image>
+        </view>
+        <!--详情end  -->
+    </view>
+    <!--脚底  -->
+    <view class="footer-box">
+        <view class="hr85"></view>
+        <view class='g-store'>
+            <view class='pic-text' data-store="{{goods.StoreID}}">
+                <image src='images/icon-home.png'></image>
+                <view class='text'>店铺主页</view>
+            </view>
+            <view class='pic-text' bindtap="collect">
+                <image src='images/icon-colect.png'></image>
+                <view class='text'>
+                    <block wx:if="{{goods.isCollected == 'False'}}">收藏</block>
+                    <block wx:if="{{goods.isCollected == 'True'}}">已收藏</block>
+                </view>
+            </view>
+            <view class='g-car' bindtap="toggleSku" data-type="1">
+                加入购物车
+            </view>
+            <view class='g-buy' bindtap="toggleSku" data-type="1">
+                立即购买
+            </view>
+        </view>
+    </view>
+    <!-- sku弹窗  -->
+    <view class='boxBg' wx:if="{{isShowDialog}}">
+        <view class='g-join'>
+            <view class='delete' bindtap="toggleSku" data-type="0">
+                <image src='images/icon-delete.png'></image>
+            </view>
+            <view class='g-car-info'>
+                <view class='pic-text'>
+                    <image src="{{goods.DefaultImage}}"></image>
+                    <view class='text'>
+                        <view class='price'>￥{{curPrice}}</view>
+                        <view class='inv'>库存 {{curStock}}  件</view>
+                        <view class='inv' wx:if="{{curProty}}">已选：{{curProty}}</view>
+                    </view>
+                </view>
+                <view class='pro-attr' wx:if="{{goods.SkuInfo.length > 0}}">
+                    <view class='title'>产品属性</view>
+                    <view class='pro-btn'>
+                        <view class="{{curSkuId == item.MainID? 'active': '' }}" wx:for="{{goods.SkuInfo}}"  wx:key="index" bindtap="selectSku" data-item="{{item}}">{{item.Name}}</view>
+                    </view>
+                </view>
+                <view class='pro-num'>
+                    <view class='text'>购买数量</view>
+                    <view class='btn-num'>
+                        <view class='btn-del' data-type="-1" bindtap="changeQuantity">-</view>
+                        <view class='num'>{{productQuantity}}</view>
+                        <view class='btn-add' data-type="1" bindtap="changeQuantity">+</view>
+                    </view>
+                </view>
+            </view>
+            <view class='btn-group'>
+                <view bindtap='addCart'>加入购物车</view>
+                <view bindtap="buyNow">立即购买</view>
+            </view>
+        </view>
+    </view>
+    <!-- 产品参数  -->
+    <view class="params-container-box" wx:if="{{isShowparams == 1}}">
+        <view class="params-container">
+            <view class='title'>产品参数</view>
+            <view class='pro-box'>
+                <view class='item'>
+                    <view>品牌</view>
+                    <view>{{goods.Brand}}</view>
+                </view>
+                <view class='item' wx:for="{{goods.LstStandardType}}" wx:key="index">
+                    <view>{{item.SName}}</view>
+                    <view>
+                        <text class="sku-item" wx:for="{{item.LstStandardValue}}" wx:for-item="sku" wx:key="index">{{sku.SValue}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class='pro-btn' data-type="0" bindtap="toogleParams">完成</view>
+        </view>
+    </view>
+</view>

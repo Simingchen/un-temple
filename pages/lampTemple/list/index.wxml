@@ -1,0 +1,57 @@
+<view class="search-bar-box">
+    <view class="hr130"></view>
+    <view class="search-bar {{isSHowSearch? 'focus': ''}}">
+        <view class="search-box flex-box">
+            <view class="form flex-box flex-item">
+                <input placeholder='请输入关键字搜索' focus="{{isSHowSearch}}" bindinput="bindKeyInput" value="{{searchTxt}}" confirm-type="search" class="flex-item" maxlength="20"></input>
+                <view class="close" bindtap='clear' bindconfirm="confirmSearch"></view>
+            </view> 
+            <view class="cancel" bindtap='toggleSearch'>
+                取消
+            </view>
+        </view>
+        <view class="search-input form" bindtap='toggleSearch'>
+            <text>请输入关键字搜索</text>
+        </view>
+    </view>
+    <view class="search-con" wx:if="{{isSHowSearch}}">
+        <view class="panel search-line lately-search" wx:if="{{history.length > 0}}">
+            <view class="title">
+                最近搜索
+                <view class="del" bindtap='clearHistory'></view>
+            </view>
+            <view class="list-con clearfix">
+                <view class="item" wx:for="{{history}}" wx:key="index">
+                    {{item}}
+                </view>
+            </view>
+        </view>
+        <view class="panel search-line hot-search">
+            <view class="title">
+                热门搜索
+            </view>
+            <view class="list-con clearfix">
+                <view class="item">阿斯顿发生的发生兜风</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="goods-list" wx:if="{{!isSHowSearch}}">
+    <navigator class="panel item flex-box" wx:for="{{items}}" wx:key="index" url="/pages/lampTemple/detail/index">
+        <image class="img" src="{{item.temple_img}}"></image>
+        <view class="con flex-item">
+            <view class="tit ellipsis">{{item.temple_name}}</view>
+            <view class="desc ellipsis2">{{item.brief}}</view>
+            <view class="flex-box">
+                <view class="see clearfix">
+                    <image src="http://wx.fayuanhui.cn/static/images/light4_icon@2x.png"></image>
+                    <text>{{item.dl_num}}</text>
+                </view>
+                <view class="see light">
+                    <image src="http://wx.fayuanhui.cn/static/images/light4_n_icon@2x.png"></image>
+                    <text>{{item.unlit}}</text>
+                </view>
+            </view>
+        </view>
+    </navigator>
+</view>

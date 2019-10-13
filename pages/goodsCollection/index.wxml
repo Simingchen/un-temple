@@ -1,0 +1,43 @@
+<view class="shopCart-page">
+    <view class="empty" wx:if="{{isLogin}}">
+        <view class="txt">当前没有登录哦~  T.T</view>
+        <view class="subTxt">快去登录吧</view>
+        <navigator class="btn toActive" url="/login">去登录</navigator>
+    </view>
+    <block wx:if="{{!isLogin}}">
+        <view class="tab-bar flex-box">
+            <view class="flex-item {{curType == 0? 'on' : ''}}" data-type="0" bindtap='changeTab'>法物</view>
+            <view class="flex-item {{curType == 1? 'on' : ''}}" data-type="1" bindtap='changeTab'>法讯</view>
+        </view>
+        <view class="empty" wx:if="{{!goodsList.length}}">
+            <view class="txt">快去收藏吧~</view>
+        </view>
+        <view class="page-content" wx:if="{{goodsList.length}}">
+            <view wx:for="{{goodsList}}" wx:key="{{index}}" wx:for-item="goods">
+                <view class="goods-item">
+                    <image class="goods-img" src="{{goods.goods_cover}}"></image>
+                    <view class="con">
+                        <view class="goods-name ellipsis2">
+                            {{goods.goods_name}}
+                        </view>
+                        <view class="goods-price">
+                            <text>¥{{goods.goods_price}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="page-content">
+            <view class="list info">
+                <view class="panel item flex-box" wx:for="{{items}}" wx:key="index">
+                    <image class="img" src="{{item.Img}}"></image>
+                    <view class="con flex-item">
+                        <view class="tit">{{item.Name}}</view>
+                        <view class="see">{{item.see}}</view>
+                        <view class="source">{{item.source}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

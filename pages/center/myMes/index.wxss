@@ -1,0 +1,11 @@
+.tab-bar{
+    height:100rpx;
+    margin-bottom:20rpx;
+    line-height: 100rpx;
+    background: #f9f9f9;
+    text-align: center;
+    border-top:1rpx solid #dadada;
+}
+.tab-bar .flex-item.on{
+    color:#c7a769;
+}

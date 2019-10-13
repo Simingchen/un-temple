@@ -1,0 +1,35 @@
+<view class="user-top">
+    <view class="avactor-box">
+        <image class="avactor" src=""></image>
+    </view>
+    <view class="txt-line">
+        彭于晏
+    </view>
+</view>
+<view class="panel">
+    <view class="line-item arrow clearfix">
+        <text class="lab">昵称</text>
+        <navigator data-type="name" class="fr" hover-class="none" url="/pages/center/editTxt/editTxt?type=nickname&txt={{user.Name}}">
+            彭于晏
+        </navigator>
+    </view>
+    <view class="line-item arrow clearfix">
+        <text class="lab">性别</text>
+        <navigator data-type="name" class="fr" hover-class="none" url="/pages/center/editTxt/editTxt?type=nickname&txt={{user.Name}}">
+            男
+        </navigator>
+    </view>
+    <view class="line-item arrow clearfix">
+        <text class="lab">出生日期</text>
+        <view data-type="name" class="fr">
+            1992-07-28
+        </view>
+    </view>
+    <view class="line-item arrow clearfix">
+        <text class="lab">绑定手机号</text>
+        <navigator data-type="name" class="fr" hover-class="none" url="/pages/center/changePhone/change">
+            13926012343
+        </navigator>
+    </view>
+</view>
+<view class="btn save-btn">返回</view>

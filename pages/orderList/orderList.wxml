@@ -1,0 +1,53 @@
+<view class="orderList-page">
+    <!-- 状态栏 -->
+    <view class="top-box">
+        <view class="flex-box top-nav">
+            <view data-type="-1" class="flex-item {{curType == -1? 'on': ''}}" bindtap="switchOrder">
+                全部订单
+            </view>
+            <view data-type="0" class="flex-item {{curType == 0? 'on': ''}}" bindtap="switchOrder">
+                待支付
+            </view>
+            <view data-type="1" class="flex-item {{curType == 1? 'on': ''}}" bindtap="switchOrder">
+                待发货
+            </view>
+            <view data-type="2" class="flex-item {{curType == 2? 'on': ''}}" bindtap="switchOrder">
+                待收货
+            </view>
+        </view>
+    </view>
+    <!-- 列表 -->
+    <view class="empty" wx:if="{{!items.length}}"> 
+        <view class="txt">暂无订单~</view>
+    </view>
+    <view class="order-con" wx:if="{{items.length>0}}">
+        <view class="panel goods-li" wx:for="{{items}}" wx:key="index">
+            <view class="state-li clearfix">
+                <view class="fl">
+                    订单编号：{{item.Number}}
+                </view>
+                <text class="state">待支付</text>
+            </view>
+            <view class="goodsItem">
+                <image class="img" src="{{item.Img}}"></image>
+                <view class="con">
+                    <view class="tit">上大人个人体会它已经dszfsdf sd同样人员而同样</view>
+                    <view class="item-sub clearfix">
+                    <view class="price fl">
+                            ¥ 1231
+                        </view>
+                        <view class="num fr">× 21</view>
+                    </view>
+                </view>
+            </view>
+            <view class="li-bot">
+                <view class="total">合计: <text>234.00</text> </view>  
+                <view>共1件商品</view>
+            </view>
+            <view class="btns-line clearfix">
+                <view class="delete-btn b2" wx:if="{{item.Status == 0}}" data-number="{{item.Number}}" bindtap="payOrder">去付款</view>
+                <view class="delete-btn b1" wx:if="{{item.Status == 0}}" data-id="{{item.ID}}" bindtap="cancleOrder">取消订单</view>
+            </view>
+        </view>
+    </view>
+</view>

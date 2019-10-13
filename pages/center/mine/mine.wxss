@@ -1,0 +1,91 @@
+.user-top{
+    position: relative;
+    height:490rpx;
+    background: #6e5c45;
+}
+.user-top .set{
+    position: absolute;
+    right:38rpx;
+    top:20rpx;
+    width:66rpx;
+    height:50rpx;
+    text-align: center;
+}
+.set-icon{
+    width:38rpx;
+    height:38rpx;
+}
+.panel image{
+    width:80rpx;
+    height:80rpx;
+}
+.user-top{
+    padding-top:50rpx;
+    text-align: center;
+    color:#fff;
+}
+.user-top .avactor{
+    width:200rpx;
+    height:200rpx;
+    border-radius: 200rpx;
+    background: #999;
+}
+.edit{
+    display: inline-block;
+    height:30rpx;
+    padding-right:26rpx;
+    margin-left:26rpx;
+    background: url(data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wgARCAAeABoDAREAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAcIBQb/xAAZAQACAwEAAAAAAAAAAAAAAAADBAABBQL/2gAMAwEAAhADEAAAAF7j6XUE4p9xeSED7Pd3JopSKi0rAGrh5RQAKpgGJLl0EtW6JEQMn//EAC4QAAAFAwEGBQQDAAAAAAAAAAECAwQFBgcRABITITFBUhAXIlbBFCOT0kJhgv/aAAgBAQABPwDVBUDL3DnCRcUnwDBl3B87tuTuH4Drq3zamKRgJWhKtjWMc9QSOu6UccUZNEM/fIcePDt5l1MhGll5AIs6xowHCgNRVD1iltDsZ4c9nGqAoCWuJOki4xPBQwZdycB3bcmeY/AddUtS9P2opQ7ducjZi2JvnTxfmoPU5x1eu7ZrlyxEGaJUYRgc304nIG9UHqce3+i+Fha6oulLbM0X81GsZI6iyjkhzgVU/rMBRH/Ory3neXHfiwYCdvTbc+UkeRnBu8/wXxp2y9t5OCjnSNNFMRduQ4CuqfeCAh/LBuevIm3ntht+VT9teRNvPbDb8qn7amYC0rGYkGpoefKZBwomJUli7AYMIcMnzjX/xAAeEQADAAICAwEAAAAAAAAAAAAAAgMTURASARExcf/aAAgBAgEBPwARGoxPqq9WG++fXwSbUYRFmpWuTiDqsytsn5ysp6MU9GKejHPR/8QAHBEAAgEFAQAAAAAAAAAAAAAAAAIDARASE1Ei/9oACAEDAQE/AB3xHyb0p6HfErVmqRR42lRmYiixvWR+mx+mx+myTp//2Q==) center center no-repeat;
+    background-size: 26rpx 30rpx;
+    vertical-align: middle;
+}
+.user-top .txt-line{
+    line-height: 100rpx;
+}
+.panel .txt{
+    font-size: 34rpx;
+    color: #2c3e50;
+}
+.panel {
+    text-align: center;
+}
+.panel .title{
+    color: #999;
+    font-size: 34rpx;
+    line-height: 48rpx;
+    padding-top: 30rpx;
+    padding-left: 30rpx;
+    text-align: left;
+}
+.tab-list .flex-item{
+    padding: 36rpx 0 40rpx;
+}
+.main-tab{
+    position: relative;
+    padding: 44rpx 0 40rpx;
+    margin-top: -110rpx;
+    text-align: center;
+    line-height: 48rpx;
+}
+.feed-panel .con{
+    padding-top:60rpx;
+}
+.feed-panel .txt{
+    font-size: 34rpx;
+}
+.feed-panel{
+    padding-bottom:70rpx;
+}
+.feed-panel .btn{
+    font-size: 34rpx;
+    width:176rpx;
+    height:68rpx;
+    padding:0;
+    margin-top:30rpx;
+    margin-bottom:0;
+    line-height: 68rpx;
+    border-radius: 3rpx;
+}
+page{
+    padding-bottom:20rpx;
+}

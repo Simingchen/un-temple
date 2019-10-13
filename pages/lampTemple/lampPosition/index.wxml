@@ -1,0 +1,63 @@
+<view class="panel top-bar flex-box">
+    <view class="flex-item">
+        <image src="../../../img/0763_03.jpg"></image>
+        <view class="txt">剩余位置</view>
+        <view class="num">1028</view>
+    </view>
+    <view class="flex-item">
+        <image src="../../../img/759_03.jpg"></image>
+        <view class="txt">已选</view>
+        <view class="num">0</view>
+    </view>
+    <view class="flex-item">
+        <image src="../../../img/0763_05.jpg"></image>
+        <view class="txt">已售</view>
+        <view class="num">28</view>
+    </view>
+</view>
+<view class="panel positon-panel">
+    <view class="flex-box positon-tab">
+        <view class="flex-item on">
+            <text class="txt">推荐层数</text>
+        </view>
+        <view class="flex-item">
+            <text class="txt">全部灯位</text>
+        </view>
+    </view>
+    <view class="position-list">
+        <view class="clearfix">
+            <view class="item" wx:for="{{floor}}" wx:key="index">
+                {{item}}
+            </view>
+        </view>
+        <view class="toggle">
+            <text class="on"></text>
+            收起
+        </view>
+    </view>
+    <view class="lamp-list">
+        <view class="lift">
+            <view class="item" wx:for="{{floor}}" wx:key="index">
+                {{item}}
+            </view>
+        </view>
+        <view class="lamps clearfix">
+            <scroll-view class="scroll" scroll-x>
+                <view class="item">
+                    <image src="../../../img/0763_05.jpg"></image>
+                    <view class="no">18-001</view>
+                </view>
+                <view class="item">
+                    <image src="../../../img/0763_03.jpg"></image>
+                    <view class="no">18-001</view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<view class="footer-box">
+    <view class="hr28"></view>
+    <view class="footer flex-box">
+        <view class="b2" bindtap='saveOrder'>确认支付</view>
+    </view>
+</view>

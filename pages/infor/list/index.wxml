@@ -1,0 +1,19 @@
+<view class="search-bar">
+    <view class="hr130"></view>
+    <view class="search-box">
+        <view class="form flex-box">
+            <input placeholder='请输入关键字搜索' confirm-type="search" class="flex-item"></input>
+            <view class="close"></view>
+        </view> 
+    </view>
+</view>
+<view class="list">
+    <navigator class="panel item flex-box" wx:for="{{items}}" wx:key="index" hover-class="none" url="/pages/infor/detail/index">
+        <image class="img" src="{{item.Img}}"></image>
+        <view class="con flex-item">
+            <view class="tit">{{item.Name}}</view>
+            <view class="see">{{item.see}}</view>
+            <view class="source">{{item.source}}</view>
+        </view>
+    </navigator>
+</view>

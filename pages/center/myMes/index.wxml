@@ -1,0 +1,19 @@
+<view class="shopCart-page">
+    <view class="empty" wx:if="{{isLogin}}">
+        <view class="txt">当前没有登录哦~  T.T</view>
+        <view class="subTxt">快去登录吧</view>
+        <navigator class="btn toActive" url="/login">去登录</navigator>
+    </view>
+    <block wx:if="{{!isLogin}}">
+        <view class="tab-bar flex-box">
+            <view class="flex-item {{curType == 0? 'on' : ''}}" data-type="0" bindtap='changeTab'>供灯消息</view>
+            <view class="flex-item {{curType == 1? 'on' : ''}}" data-type="1" bindtap='changeTab'>系统消息</view>
+        </view>
+        <view class="empty" wx:if="{{!goodsList.length}}">
+            <view class="txt">暂无消息~</view>
+        </view>
+        <view class="page-content" wx:if="{{goodsList.length}}">
+            
+        </view>
+    </block>
+</view>

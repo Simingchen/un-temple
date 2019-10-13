@@ -1,0 +1,52 @@
+{
+	"pages": [
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	        "color": "#666",
+	        "selectedColor": "#c7a769",
+	        "borderStyle": "black",
+			"backgroundColor": "#fff",
+			"selectedColor": "#c40606",
+	        "list": [
+	            {
+	                "selectedIconPath": "img/icon11.png",
+	                "iconPath": "img/icon1.png",
+	                "pagePath": "pages/home/index",
+	                "text": "首页"
+	            },
+	            {
+	                "selectedIconPath": "img/icon21.png",
+	                "iconPath": "img/icon2.png",
+	                "pagePath": "pages/lampTemple/list/index",
+	                "text": "佛灯"
+	            },
+	            {
+	                "selectedIconPath": "img/icon31.png",
+	                "iconPath": "img/icon3.png",
+	                "pagePath": "pages/infor/list/index",
+	                "text": "法物"
+	            },
+	            {
+	                "selectedIconPath": "img/icon41.png",
+	                "iconPath": "img/icon4.png",
+	                "pagePath": "pages/center/mine/mine",
+	                "text": "个人中心"
+	            }
+	        ]
+	    }
+}

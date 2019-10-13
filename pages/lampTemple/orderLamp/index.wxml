@@ -1,0 +1,67 @@
+<view class="panel">
+    <view class="goodsItem clearfix rel">
+        <image class="img" src="{{item.Img}}"></image>
+        <view class="con ofh">
+            <view class="tit ellipsis">揭阳普宁寺寺庙</view>
+            <view class="item-sub">
+                揭阳普宁寺——左
+            </view>
+            <view class="mui-number">
+                <text class="decrease" data-id="{{goods.ID}}" data-item="{{item}}" data-type="-1" bindtap="changeQuantity"></text>
+                <text type="number" class="num">{{Quantity}}</text>
+                <text class="increase" data-id="{{goods.ID}}" data-item="{{item}}" data-type="1" bindtap="changeQuantity"></text>
+            </view>
+        </view>
+    </view>
+    <view class="lamp-time">
+        <view class="tit">选择供灯时长</view>
+        <view class="lamp-list clearfix">
+            <view class="lamp-item {{curTime==1? 'on': ''}}" data-time="1" bindtap='changeTime'>1小时</view>
+            <view class="lamp-item {{curTime==2? 'on': ''}}" data-time="2" bindtap='changeTime'>1天</view>
+            <view class="lamp-item {{curTime==3? 'on': ''}}" data-time="3" bindtap='changeTime'>1个月</view>
+            <view class="lamp-item {{curTime==4? 'on': ''}}" data-time="4" bindtap='changeTime'>1年</view>
+            <view class="lamp-item {{curTime==5? 'on': ''}}" data-time="5" bindtap='changeTime'>常明</view>
+            <view class="lamp-item {{curTime==6? 'on': ''}}" data-time="6" bindtap='changeTime'>其他时长</view>
+        </view>
+    </view>
+</view>
+<view class="panel lamp-position">
+    <navigator class="line-item arrow clearfix" hover-class="none" url="/pages/lampTemple/lampPosition/index">
+        <text class="lab">选择供灯位置</text>
+        <view class="fr">
+            18-015
+        </view>
+    </navigator>
+</view>
+<view class="panel">
+    <view class="input-box flex-box">
+        <view class="tit">祈福人姓名</view>
+        <input class="flex-item" placeholder='选填姓名' maxlength='15' data-type="send" bindinput="changeMsg"></input>
+    </view>
+    <view class="input-box flex-box">
+        <view class="tit">收福人姓名</view>
+        <input class="flex-item" placeholder='选填姓名' maxlength='25' data-type="receiver" bindinput="changeMsg"></input>
+    </view>
+    <view class="input-box flex-box">
+        <view class="tit">短信收福人</view>
+        <input class="flex-item" placeholder='选填手机号码' type="number" maxlength='11' data-type="msg" bindinput="changeMsg"></input>
+    </view>
+</view>
+<view class="panel bless">
+    <view class="line-item arrow clearfix">
+        <text class="lab">祈福语</text>
+        <navigator data-type="name" class="fr" hover-class="none" url="/pages/center/editTxt/editTxt?type=nickname&txt={{user.Name}}">
+            更多
+        </navigator>
+    </view>
+    <scroll-view scroll-y class="bless-txt">
+        平安是福,人人想得,俗世中祈福求事事成遂,合家安康幸福。遇逆境能化凶成吉,顺境则吉上加吉。 升官贵人: 官运亨通,鹏程万里
+    </scroll-view>
+</view>
+<view class="footer-box">
+    <view class="hr28"></view>
+    <view class="footer flex-box">
+        <view class="flex-item b1">合计 <text class="total">¥19998</text></view>
+        <view class="b2" bindtap='saveOrder'>确认付款</view>
+    </view>
+</view>
