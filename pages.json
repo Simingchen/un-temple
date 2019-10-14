@@ -9,104 +9,123 @@
 			}
 		},
 		{
-			"path": "pages/center/mine/mine"
+			"path": "pages/lampTemple/list",
+			"style": {
+				"navigationBarTitleText": "佛灯",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
 		},
 		{
-			"path": "pages/center/register/register"
+			"path": "pages/infor/list",
+			"style": {
+				"navigationBarTitleText": "法物",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
 		},
 		{
-			"path": "pages/center/login/login"
-		},
-		{
-			"path": "pages/center/forget/forget"
-		},
-		{
-			"path": "pages/center/addrList/addrlist"
-		},
-		{
-			"path": "pages/center/addrNew/addNew"
-		},
-		{
-			"path": "pages/center/changePhone/change"
-		},
-		{
-			"path": "pages/center/myMes/index"
-		},
-		{
-			"path": "pages/center/feedback/index"
-		},
-		{
-			"path": "pages/center/myLamp/index"
-		},
-		{
-			"path": "pages/center/myStamp/index"
-		},
-		{
-			"path": "pages/center/editMsg/editMsg"
-		},
-		{
-			"path": "pages/center/editTxt/editTxt"
-		},
-		{
-			"path": "pages/center/myInfor/index"
-		},
-		{
-			"path": "pages/goodsCollection/index"
-		},
-		{
-			"path": "pages/orderList/orderList"
-		},
-		{
-			"path": "pages/infor/list/index"
-		},
-		{
-			"path": "pages/infor/detail/index"
-		},
-		{
-			"path": "pages/lampTemple/list/index"
-		},
-		{
-			"path": "pages/lampTemple/detail/index"
-		},
-		{
-			"path": "pages/lampTemple/orderLamp/index"
-		},
-		{
-			"path": "pages/lampTemple/orderStamp/index"
-		},
-		{
-			"path": "pages/lampTemple/lampPosition/index"
-		},
-		{
-			"path": "pages/lampTemple/lampBless/index"
-		},
-		{
-			"path": "pages/lampTemple/orderDate/index"
-		},
-		{
-			"path": "pages/goods/list/index"
-		},
-		{
-			"path": "pages/goods/detail/index"
-		},
-		{
-			"path": "pages/goods/cart/index"
-		},
-		{
-			"path": "pages/goods/order/index"
-		},
-		{
-			"path": "pages/goodsDetail/index"
-		},
-		{
-			"path": "pages/goodsDetail/search/search"
-		},
-		{
-			"path": "pages/goodsDetail/searchlist/search"
-		},
-		{
-			"path": "pages/orderDetail/orderDetail"
+			"path": "pages/center/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
 		}
+		// {
+		// 	"path": "pages/center/register/register"
+		// },
+		// {
+		// 	"path": "pages/center/login/login"
+		// },
+		// {
+		// 	"path": "pages/center/forget/forget"
+		// },
+		// {
+		// 	"path": "pages/center/addrList/addrlist"
+		// },
+		// {
+		// 	"path": "pages/center/addrNew/addNew"
+		// },
+		// {
+		// 	"path": "pages/center/changePhone/change"
+		// },
+		// {
+		// 	"path": "pages/center/myMes/index"
+		// },
+		// {
+		// 	"path": "pages/center/feedback/index"
+		// },
+		// {
+		// 	"path": "pages/center/myLamp/index"
+		// },
+		// {
+		// 	"path": "pages/center/myStamp/index"
+		// },
+		// {
+		// 	"path": "pages/center/editMsg/editMsg"
+		// },
+		// {
+		// 	"path": "pages/center/editTxt/editTxt"
+		// },
+		// {
+		// 	"path": "pages/center/myInfor/index"
+		// },
+		// {
+		// 	"path": "pages/goodsCollection/index"
+		// },
+		// {
+		// 	"path": "pages/orderList/orderList"
+		// },
+		// {
+		// 	"path": "pages/infor/detail/index"
+		// },
+		
+		// {
+		// 	"path": "pages/lampTemple/detail/index"
+		// },
+		// {
+		// 	"path": "pages/lampTemple/orderLamp/index"
+		// },
+		// {
+		// 	"path": "pages/lampTemple/orderStamp/index"
+		// },
+		// {
+		// 	"path": "pages/lampTemple/lampPosition/index"
+		// },
+		// {
+		// 	"path": "pages/lampTemple/lampBless/index"
+		// },
+		// {
+		// 	"path": "pages/lampTemple/orderDate/index"
+		// },
+		// {
+		// 	"path": "pages/goods/list/index"
+		// },
+		// {
+		// 	"path": "pages/goods/detail/index"
+		// },
+		// {
+		// 	"path": "pages/goods/cart/index"
+		// },
+		// {
+		// 	"path": "pages/goods/order/index"
+		// },
+		// {
+		// 	"path": "pages/goodsDetail/index"
+		// },
+		// {
+		// 	"path": "pages/goodsDetail/search/search"
+		// },
+		// {
+		// 	"path": "pages/goodsDetail/searchlist/search"
+		// },
+		// {
+		// 	"path": "pages/orderDetail/orderDetail"
+		// }
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -129,19 +148,19 @@
 			{
 				"selectedIconPath": "img/icon21.png",
 				"iconPath": "img/icon2.png",
-				"pagePath": "pages/lampTemple/list/index",
+				"pagePath": "pages/lampTemple/list",
 				"text": "佛灯"
 			},
 			{
 				"selectedIconPath": "img/icon31.png",
 				"iconPath": "img/icon3.png",
-				"pagePath": "pages/infor/list/index",
+				"pagePath": "pages/infor/list",
 				"text": "法物"
 			},
 			{
 				"selectedIconPath": "img/icon41.png",
 				"iconPath": "img/icon4.png",
-				"pagePath": "pages/center/mine/mine",
+				"pagePath": "pages/center/mine",
 				"text": "个人中心"
 			}
 		]

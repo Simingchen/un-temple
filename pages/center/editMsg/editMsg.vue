@@ -73,6 +73,22 @@
 	</navigator>
 	<button class="btn mt40" bindtap="saveMsg">保存</button>
 </template>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+
+		}
+	}
+</script>
 <style>
 	/* pages/center/editMsg/editMsg.wxss */
 	page{
