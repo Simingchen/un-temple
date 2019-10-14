@@ -427,7 +427,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.search-bar{
 	    position: fixed;
 	    width:100%;

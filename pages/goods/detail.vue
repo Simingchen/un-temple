@@ -136,7 +136,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.top{
 	    height:750rpx;
 	}

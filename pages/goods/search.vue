@@ -46,7 +46,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	/* pages/goodsDetail/search/search.wxss */
 	.wrap {
 	    margin: 0;

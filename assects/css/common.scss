@@ -95,29 +95,27 @@ button:after{
     margin-left:20rpx;
     margin-bottom:20rpx;
     background: #fff;
-}
-.goods-item .con{
-    padding: 10rpx;
-}
-.goods-item .goods-img{
-    width:345rpx;
-    height:345rpx;
-    display: block;
-    background: #999;
-}
-
-.goods-item .goods-name{
-    height:76rpx;
-    font-size: 30rpx;
-    line-height: 38rpx;
-}
-.goods-item .goods-price{
-    font-size: 27rpx;
-    color:#bd151d;
+	.con{
+	    padding: 10rpx;
+	}
+	.goods-img{
+	    width:345rpx;
+	    height:345rpx;
+	    display: block;
+	    background: #999;
+	}
+	.goods-name{
+	    height:76rpx;
+	    font-size: 30rpx;
+	    line-height: 38rpx;
+	}
+	.goods-price{
+	    font-size: 27rpx;
+	    color:#bd151d;
+	}
 }
 .panel {
     background: #fff;
-    box-shadow: 0 4rpx 18rpx 0 #b5ae85;
     border-radius: 8rpx;
     margin: 20rpx;
 }

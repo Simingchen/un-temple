@@ -23,7 +23,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.infor-title{
 	    font-size: 40rpx;
 	    line-height: 64rpx;

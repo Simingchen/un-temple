@@ -135,7 +135,7 @@
 		},
 	}
 </script>
-<style>
+<style lang="scss">
 	.hr130 {
 		height: 132rpx;
 	}

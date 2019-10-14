@@ -1,7 +1,7 @@
 <template>
 	<view class='ban'>
 		<swiper class="top-swiper" :autoplay="true" :indicator-dots="true" indicator-active-color="#fff"
-		 indicator-color='rgba(255,255,255, .5)' duration="500" :circular="true">
+		 indicator-color='rgba(255,255,255, .5)' duration="200" :circular="true">
 			<swiper-item class="item" v-for="(item,index) in topBanner.list" :key="index">
 				<image :src="item.File" class="slide-image"></image>
 			</swiper-item>
@@ -38,7 +38,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.ban image, .ban {
 	    width: 750rpx;
 	    height: 360rpx;

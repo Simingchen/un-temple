@@ -475,7 +475,7 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.tab-bar {
 		height: 100rpx;
 		margin-bottom: 20rpx;
