@@ -214,7 +214,7 @@ export default {
 	}
 };
 </script>
-<style>
+<style lang="scss">
 page {
 	color: #000;
 }
@@ -228,10 +228,9 @@ page {
 	background-image: url(data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wgARCAAdAB0DAREAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAABgcABQMECf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAOkxDGXAMF0AxpB4C40xchkK0IBjH//EAC8QAAICAQIFAgMIAwAAAAAAAAECAwQFBhEABxIhMVFhFUFCCBMUFiIyYnFDgpL/2gAIAQEAAT8Ay2WzOezM+ldK2hTWmFOUyhQOa5YbrDEp7NKV2Yk7hAR2JI4Tldopx15XEnMTn99jJzPakY+u7kgf0oA4m0EcMhtaByc2Hsx9xUkleWjP/F4mJ6N/HVH0ke/g6X1EmoqEkstRqd6nKat6m53avOvld/qUghlYeVIPGlc0NPcqvznJj7N+a1HLmLUVcbyyvM5c/wDIIHsqcYfmHpLM6SbWlfLRxYyJC07ynZoGHlHHybcgbDzuNt9xvpTJax5s6rr6vjtXcHo/EzE0YEYpJknB2LSeqevkfSO/URzm1pkOWup4Mphd1fO1FWwANwWgZgrH3Il2/wBRxoKZcObugrZ6LOIleSoD/noSOWidfULuYz6FPccZf7PWm8nqr4tBfnp4azILF7Dw7rDPMu/SQQf0judxt67Eb9q9evTrx1KsEcMEKBI40UKqKOwAA7ADifTGI5r5q9m8gGkxFHooY2RPE7IXM8q+qliEB+f3ZPGodL0NRpDJLNPUvU2L071Vgk9dj2PSSCCD4KkFSPI41nzm1Py0yHwXKVKGdcbAWFjaoxH8lDOCf6240xPmua2IGQzeW/A4iQ9MmNoRmNpx81lnLFip8EIE34qVa1KtFTpwRwQQII4441CqijsAAPA4/8QAFBEBAAAAAAAAAAAAAAAAAAAAQP/aAAgBAgEBPwAH/8QAFBEBAAAAAAAAAAAAAAAAAAAAQP/aAAgBAwEBPwAH/9k=);
 	background-repeat: no-repeat;
 	background-size: 100%;
-}
-
-.form-checkbox.checked {
+	&.checked {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAaVBMVEXHp2n////69vDr4MnNsXnKq3DZw5nezKf9/PrgzqvMrnX28efSuYf07uLgz63+/fzz7eDs4szaxZzYwpbVvY318OXo3MPo2sDcyKHWvo/JqW38+fXTuYjx6dnt4s7i07TRt4X28eju5dPzA5RmAAABDUlEQVQoz43T626EIBAF4DkgeAHvWte63V7e/yE7ik7MLjY9f0z4YhhghiBRurLzbCutIBEuO5LY5oldaugUk7oT1487PcW32cH1W0IvSaZs5wdrxNvA7k7ReLdxShdJVy7NFZuSuaPLdCBFkbxX6sYfRh1Rky8Y+ctYxWpSyLb1nOyr3lg/14IZ57BZnxeiC+qgNOxcKGgT1Cq+5YJ2toFLIKz1I6CPW+6P0nrHzqtDKbqVpveTdlzPVPhvVqmCUUlFQL320U8iyggrp13A+fgiiQWhMbKTAprT65omPKjcpZJ/5UHhvLxEUpzUjxujjTeTRuBs+qsV2VsfbeTrMRj/PUQygrkdhj4/j+Av7BAKRdl10DUAAAAASUVORK5CYII=);
+}
 }
 
 .addNew {
@@ -298,14 +297,14 @@ page {
 .empty {
 	text-align: center;
 	padding-top: 130rpx;
-}
-.empty .txt {
-	font-size: 32rpx;
-	margin-bottom: 10rpx;
-	color: #666;
-}
-.empty .subTxt {
-	margin-bottom: 40rpx;
-	color: #999;
+	.txt {
+		font-size: 32rpx;
+		margin-bottom: 10rpx;
+		color: #666;
+	}
+	.subTxt {
+		margin-bottom: 40rpx;
+		color: #999;
+	}
 }
 </style>
