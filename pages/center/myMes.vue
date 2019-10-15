@@ -10,7 +10,7 @@
 	            <view class="flex-item" :class="{on: curType == 0}" bindtap='changeTab(0)'>供灯消息</view>
 	            <view class="flex-item" :class="{on: curType == 1}" bindtap='changeTab(1)'>系统消息</view>
 	        </view>
-	        <view class="empty" v-if="!goodsList.length">
+	        <view class="empty tac" v-if="!goodsList.length">
 	            <view class="txt">暂无消息~</view>
 	        </view>
 	        <view class="page-content" v-if="goodsList.length">
@@ -23,7 +23,8 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				curType: 0,
+				goodsList: []
 			}
 		},
 		onLoad (options) {
@@ -71,19 +72,13 @@
 			                    })
 			                }
 			            } else {
-			                wx.showToast({
+			                uni.showToast({
 			                    icon: 'none',
 			                    title: oData.Msg,
 			                    duration: 1000
 			                })
 			            }
-			        },
-			        fail: function () {
-			            wx.showToast({
-			                icon: 'none',
-			                title: "失败"
-			            })
-			        },
+			        }
 			    })
 			},
 		}
@@ -99,6 +94,6 @@
 	    border-top:1rpx solid #dadada;
 	}
 	.tab-bar .flex-item.on{
-	    color:#c7a769;
+	    color:#c40606;
 	}
 </style>

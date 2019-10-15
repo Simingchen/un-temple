@@ -2,15 +2,15 @@
 	<view class="login-page">
 		<view class="panel login-form">
 			<view class="input-row row1">
-				<input data-type="pass" bindinput="checkForm" type="password" maxlength="30" placeholder="请输入新的密码" />
+				<input data-type="pass" @input="checkForm" type="password" maxlength="30" placeholder="请输入新的密码" />
 			</view>
 			<view class="flex-box input-row row2">
-				<input class="flex-item input" data-type="code" bindinput="bindInput" type="number" maxlength="30" placeholder="请输入验证码" />
-				<view data-disabled="{{isDisabled}}" class="sendcode" bindtap='sendCode'>
-					<block wx:if="{{!codeButtonOn}}">
+				<input class="flex-item input" data-type="code" @input="bindInput" type="number" maxlength="30" placeholder="请输入验证码" />
+				<view data-disabled="isDisabled" class="sendcode" bindtap='sendCode'>
+					<block v-if="!codeButtonOn">
 						获取验证码
 					</block>
-					<block wx:if="{{codeButtonOn}}">
+					<block v-if="codeButtonOn">
 						{{codeTime}}S后再发送
 					</block>
 				</view>
@@ -141,6 +141,9 @@
 	}
 </script>
 <style>
+	page{
+		background:#fbe5c3;
+	}
 	.input-row {
 		padding: 20rpx 0 20rpx 135rpx;
 		border-bottom: 1px solid #e9e9e9;
@@ -183,9 +186,6 @@
 		margin: 0 auto;
 		padding: 0 50rpx;
 		line-height: 95rpx;
-		font-size: 26rpx;
-		color: #fff;
-		background: #c7a769;
 	}
 
 	.bot {
@@ -197,7 +197,7 @@
 	}
 
 	.sendcode {
-		color: #c7a769;
+		color: #b95749;
 		height: 80rpx;
 		padding: 0 40rpx;
 		line-height: 80rpx;

@@ -11,7 +11,7 @@
 					<view class="receiver-box">
 						<view>
 							{{ item.Shouman }}
-							<text>{{ item.Mobile }}</text>
+							<text class="ml10">{{ item.Mobile }}</text>
 						</view>
 					</view>
 					<view class="addr-detail">{{ item.Addr }}</view>
@@ -42,10 +42,10 @@
 	</view>
 </template>
 <script>
-// var mockData =
-// 	'{"Result":1,"Shouaddrlist":[{"Id":11668,"Shouman":"陈生","Mobile":"13926012343","Addr":"石岗海边街31号","Provid":19,"Prov":"广东","Xianid":1601,"Xian":"广州市","TownId":50283,"Town":"黄埔区","VillageId":51887,"Village":"城区","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":11706,"Shouman":"林先银","Mobile":"13799192995","Addr":"城关镇毓秀花园3号楼404单元","Provid":350000,"Prov":"福建省","Xianid":350400,"Xian":"三明市","TownId":350426,"Town":"尤溪县","VillageId":0,"Village":"","Cardid":"","Postcode":"365100","Tel":"","Isdefault":false},{"Id":11837,"Shouman":"Hdjs","Mobile":"13926012343","Addr":"Bxjsbd","Provid":520000,"Prov":"贵州省","Xianid":520100,"Xian":"贵阳市","TownId":520102,"Town":"南明区","VillageId":0,"Village":"","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":11838,"Shouman":"Hx","Mobile":"13926012343","Addr":"Shshxncjsadf sdf是电饭锅电饭锅对方过后对方过后对方过后规划局Sh","Provid":31,"Prov":"新疆","Xianid":53090,"Xian":"铁门关市","TownId":53108,"Town":"铁门关市","VillageId":0,"Village":"","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":23178,"Shouman":"hdjshs","Mobile":"13926012343","Addr":"11111","Provid":19,"Prov":"广东","Xianid":1601,"Xian":"广州市","TownId":50284,"Town":"增城区","VillageId":0,"Village":"","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":23673,"Shouman":"陈先生","Mobile":"13926012343","Addr":"1111111111","Provid":19,"Prov":"广东","Xianid":1634,"Xian":"梅州市","TownId":1635,"Town":"兴宁市","VillageId":8520,"Village":"罗岗镇","Cardid":"","Postcode":"","Tel":"","Isdefault":false}]}';
-// console.log(mockData)
-// mockData = JSON.parse(mockData);
+var mockData =
+	'{"Result":1,"Shouaddrlist":[{"Id":11668,"Shouman":"陈生","Mobile":"13926012343","Addr":"石岗海边街31号","Provid":19,"Prov":"广东","Xianid":1601,"Xian":"广州市","TownId":50283,"Town":"黄埔区","VillageId":51887,"Village":"城区","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":11706,"Shouman":"林先银","Mobile":"13799192995","Addr":"城关镇毓秀花园3号楼404单元","Provid":350000,"Prov":"福建省","Xianid":350400,"Xian":"三明市","TownId":350426,"Town":"尤溪县","VillageId":0,"Village":"","Cardid":"","Postcode":"365100","Tel":"","Isdefault":false},{"Id":11837,"Shouman":"Hdjs","Mobile":"13926012343","Addr":"Bxjsbd","Provid":520000,"Prov":"贵州省","Xianid":520100,"Xian":"贵阳市","TownId":520102,"Town":"南明区","VillageId":0,"Village":"","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":11838,"Shouman":"Hx","Mobile":"13926012343","Addr":"Shshxncjsadf sdf是电饭锅电饭锅对方过后对方过后对方过后规划局Sh","Provid":31,"Prov":"新疆","Xianid":53090,"Xian":"铁门关市","TownId":53108,"Town":"铁门关市","VillageId":0,"Village":"","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":23178,"Shouman":"hdjshs","Mobile":"13926012343","Addr":"11111","Provid":19,"Prov":"广东","Xianid":1601,"Xian":"广州市","TownId":50284,"Town":"增城区","VillageId":0,"Village":"","Cardid":"","Postcode":"","Tel":"","Isdefault":false},{"Id":23673,"Shouman":"陈先生","Mobile":"13926012343","Addr":"1111111111","Provid":19,"Prov":"广东","Xianid":1634,"Xian":"梅州市","TownId":1635,"Town":"兴宁市","VillageId":8520,"Village":"罗岗镇","Cardid":"","Postcode":"","Tel":"","Isdefault":false}]}';
+console.log(mockData)
+mockData = JSON.parse(mockData);
 const util = require('@/utils/util.js');
 export default {
 	data() {
@@ -93,12 +93,12 @@ export default {
 			});
 		},
 		// 设置默认地址
-		setDefault(e) {
+		setDefault(id) {
 			var that = this;
 			var url = 'saveAddressInDefault.ashx';
-			var params = {};
-			var id = e.currentTarget.dataset.id;
-			params.AID = id;
+			var params = {
+				id
+			};
 			util.POST({
 				url: url,
 				params: JSON.stringify(params),
@@ -135,19 +135,19 @@ export default {
 			});
 		},
 		// 删除按钮
-		delBtn: function(e) {
+		delBtn: function(id) {
 			var that = this;
-			var id = e.currentTarget.dataset.id;
 			uni.showModal({
 				title: '提示',
 				content: '确定删除该地址吗？',
-				confirmColor: '#f79bb0',
+				confirmColor: '#c40606',
 				success: function(res) {
 					if (res.confirm) {
 						var that = this;
 						var url = 'delReceiverAddress.ashx';
-						var params = {};
-						params.RID = id;
+						var params = {
+							RID: id
+						};
 						util.POST({
 							url: url,
 							params: JSON.stringify(params),
@@ -182,8 +182,6 @@ export default {
 								});
 							}
 						});
-					} else if (res.cancel) {
-						console.log('用户点击取消');
 					}
 				}
 			});
@@ -218,6 +216,9 @@ export default {
 page {
 	color: #000;
 }
+.ml10{
+	margin-left:10rpx;
+}
 .form-checkbox {
 	border-radius: 100%;
 	display: inline-block;
@@ -241,7 +242,7 @@ page {
 	text-align: center;
 	line-height: 100rpx;
 	color: #fff;
-	background: #c7a769;
+	background: #c40606;
 	z-index: 5;
 	border: 0;
 	margin: 0 auto;

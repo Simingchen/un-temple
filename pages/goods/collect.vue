@@ -1,22 +1,22 @@
 <template>
 	<view class="shopCart-page">
-		<view class="empty" wx:if="{{isLogin}}">
+		<view class="empty" v-if="isLogin">
 			<view class="txt">当前没有登录哦~ T.T</view>
 			<view class="subTxt">快去登录吧</view>
 			<navigator class="btn toActive" url="/login">去登录</navigator>
 		</view>
-		<block wx:if="{{!isLogin}}">
+		<block v-if="!isLogin">
 			<view class="tab-bar flex-box">
-				<view class="flex-item {{curType == 0? 'on' : ''}}" data-type="0" bindtap='changeTab'>法物</view>
-				<view class="flex-item {{curType == 1? 'on' : ''}}" data-type="1" bindtap='changeTab'>法讯</view>
+				<view class="flex-item" :class="{on: curType == 0}" @click='changeTab(0)'>法物</view>
+				<view class="flex-item" :class="{on: curType == 1}" @click='changeTab(1)'>法讯</view>
 			</view>
-			<view class="empty" wx:if="{{!goodsList.length}}">
-				<view class="txt">快去收藏吧~</view>
+			<view class="empty" v-if="!goodsList.length">
+				<view class="txt tac">快去收藏吧~</view>
 			</view>
-			<view class="page-content" wx:if="{{goodsList.length}}">
-				<view wx:for="{{goodsList}}" wx:key="{{index}}" wx:for-item="goods">
+			<view class="page-content" v-if="goodsList.length">
+				<view v-for="(goods, index) in goodsList" :key="index">
 					<view class="goods-item">
-						<image class="goods-img" src="{{goods.goods_cover}}"></image>
+						<image class="goods-img" :src="goods.goods_cover"></image>
 						<view class="con">
 							<view class="goods-name ellipsis2">
 								{{goods.goods_name}}
@@ -30,8 +30,8 @@
 			</view>
 			<view class="page-content">
 				<view class="list info">
-					<view class="panel item flex-box" wx:for="{{items}}" wx:key="index">
-						<image class="img" src="{{item.Img}}"></image>
+					<view class="panel item flex-box" v-for="(item,index) in items" :key="index">
+						<image class="img" :src="item.Img"></image>
 						<view class="con flex-item">
 							<view class="tit">{{item.Name}}</view>
 							<view class="see">{{item.see}}</view>
@@ -119,7 +119,6 @@
 	export default {
 		data() {
 			return {
-				curPage: 0,
 				curType: 0,
 				isLoadData: true, // 是否可加载数据
 				isLogin: false,
@@ -128,7 +127,6 @@
 				isAllSelect: false, // 是否全选还是取消全选
 				isEditStatus: true, // 是否在编辑状态
 				allSelectBtn: false, // 选定所有商品
-				allSelectDeleted: false, // 选定所有删除项(编辑模式)
 				isAllSelectDeleted: false, // 是否全选还是取消全选(编辑模式)
 				totalNum2: 0, // 选定删除商品数量(编辑模式)
 				editTxt: "编辑", // 编辑文字
@@ -393,9 +391,7 @@
 				})
 			},
 			getMsg(type, page) {
-				this.setData({
-					["goodsList"]: mockData.data.data
-				})
+				this.goodsList = mockData.data.data
 				console.log(this.data.goodsList)
 				var that = this;
 				var url = "getMyCollectionList.ashx";
@@ -456,11 +452,8 @@
 				})
 			},
 			
-			changeTab(e) {
-				var type = e.currentTarget.dataset.type;
-				this.setData({
-					curType: type
-				})
+			changeTab(type) {
+				this.curType = type
 			},
 			/**
 			 * 页面上拉触底事件的处理函数
@@ -486,7 +479,7 @@
 	}
 
 	.tab-bar .flex-item.on {
-		color: #c7a769;
+		color: #c40606;
 	}
 
 	.info .item {

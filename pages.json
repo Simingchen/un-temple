@@ -62,6 +62,54 @@
 				}
 			}
 		},
+		{
+			"path": "pages/center/feedback",
+			"style": {
+				"navigationBarTitleText": "意见反馈",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/center/changePhone",
+			"style": {
+				"navigationBarTitleText": "修改手机号码",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/center/myMes",
+			"style": {
+				"navigationBarTitleText": "我的消息",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/goods/collect",
+			"style": {
+				"navigationBarTitleText": "我的收藏",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/center/myInfor",
+			"style": {
+				"navigationBarTitleText": "我的信息",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		}
+		
+		
+		
 		// {
 		// 	"path": "pages/center/register/register"
 		// },
@@ -71,7 +119,6 @@
 		// {
 		// 	"path": "pages/center/forget/forget"
 		// },
-
 		// {
 		// 	"path": "pages/center/addrNew/addNew"
 		// },
@@ -105,7 +152,6 @@
 		// {
 		// 	"path": "pages/infor/detail/index"
 		// },
-		
 		// {
 		// 	"path": "pages/lampTemple/detail/index"
 		// },
@@ -133,7 +179,6 @@
 		// {
 		// 	"path": "pages/goods/cart/index"
 		// },
-
 		// {
 		// 	"path": "pages/goodsDetail/index"
 		// },
@@ -153,7 +198,6 @@
 	},
 	"tabBar": {
 		"color": "#666",
-		"selectedColor": "#c7a769",
 		"borderStyle": "black",
 		"backgroundColor": "#fff",
 		"selectedColor": "#c40606",
