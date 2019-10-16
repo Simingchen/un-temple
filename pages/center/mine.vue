@@ -1,7 +1,7 @@
 <template>
 <view>
 	<view class="user-top">
-	    <navigator class="set" hover-class="none" url="/pages/center/login/login">
+	    <navigator class="set" hover-class="none" url="/pages/center/login">
 	        退出
 	    </navigator>
 	    <view>

@@ -39,7 +39,7 @@
 		    </view>
 		</view>
 		<view class="goods-list" v-if="!isSHowSearch">
-		    <navigator class="panel item flex-box" v-for="(item, index) in items" :key="index" url="/pages/lampTemple/detail/index">
+		    <navigator class="panel item flex-box" v-for="(item, index) in items" :key="index" url="/pages/lampTemple/detail">
 		        <image class="img" src="item.temple_img"></image>
 		        <view class="con flex-item">
 		            <view class="tit ellipsis">{{item.temple_name}}</view>

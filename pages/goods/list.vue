@@ -1,28 +1,29 @@
 <template>
+<view>
 	<view class="search-bar-box">
 	    <view class="hr130"></view>
-	    <view class="search-bar {{isSHowSearch? 'focus': ''}}">
+	    <view class="search-bar" :class="{focus: isSHowSearch}">
 	        <view class="search-box flex-box">
 	            <view class="form flex-box flex-item">
-	                <input placeholder='请输入关键字搜索' focus="{{isSHowSearch}}" bindinput="bindKeyInput" value="{{searchTxt}}" confirm-type="search" class="flex-item" maxlength="20"></input>
-	                <view class="close" bindtap='clear' bindconfirm="confirmSearch"></view>
+	                <input placeholder='请输入关键字搜索' :focus="isSHowSearch" :value="searchTxt" confirm-type="search" class="flex-item" maxlength="20"></input>
+	                <view class="close" @click='clear' @confirm="confirmSearch"></view>
 	            </view> 
-	            <view class="cancel" bindtap='toggleSearch'>
+	            <view class="cancel" @click='toggleSearch'>
 	                取消
 	            </view>
 	        </view>
-	        <view class="search-input form" bindtap='toggleSearch'>
+	        <view class="search-input form" @click='toggleSearch'>
 	            <text>请输入关键字搜索</text>
 	        </view>
 	    </view>
-	    <view class="search-con" wx:if="{{isSHowSearch}}">
-	        <view class="panel search-line lately-search" wx:if="{{history.length > 0}}">
+	    <view class="search-con" v-if="isSHowSearch">
+	        <view class="panel search-line lately-search" v-if="history.length > 0">
 	            <view class="title">
 	                最近搜索
-	                <view class="del" bindtap='clearHistory'></view>
+	                <view class="del" @click='clearHistory'></view>
 	            </view>
 	            <view class="list-con clearfix">
-	                <view class="item" wx:for="{{history}}" wx:key="index">
+	                <view class="item" v-for="(item, index) in history" :key="index">
 	                    {{item}}
 	                </view>
 	            </view>
@@ -37,9 +38,9 @@
 	        </view>
 	    </view>
 	</view>
-	<view class="goods-list" wx:if="{{!isSHowSearch}}" wx:for="{{goodsList}}" wx:key="{{index}}" wx:for-item="goods">
-	    <navigator class="goods-item" hover-class="none" url="/pages/goods/detail/index">
-	        <image class="goods-img" src="{{goods.goods_cover}}"></image>
+	<view class="goods-list" v-if="!isSHowSearch" v-for="(goods, index) in goodsList" :key="index" >
+	    <navigator class="goods-item" hover-class="none" url="/pages/goods/detail">
+	        <image class="goods-img" :src="goods.goods_cover"></image>
 	        <view class="con">
 	            <view class="goods-name ellipsis2">
 	                {{goods.goods_name}}
@@ -50,9 +51,10 @@
 	        </view>
 	    </navigator>
 	</view>
+</view>
 </template>
 <script>
-	const util = require('../../../utils/util.js');
+	const util = require('@/utils/util.js');
 	var mockData = { "data": { "current_page": 1, "data": [{ "goods_id": 15, "goods_name": "\u5357\u6cc9\u5c71\u5bfa8\u5bf8\u5706\u6ee1\u89c2\u97f3\uff08\u7fe0\u7389\u9576\u91d1\uff09", "goods_cover": "http:\/\/qn.fayuanhui.cn\/2d2da218534518a64eee630d33132d5e.jpg", "goods_storage": 3, "goods_price": "4666.00" }, { "goods_id": 16, "goods_name": "\u5357\u6cc9\u5c71\u5bfa8\u5bf8\u5706\u6ee1\u4e09\u5b9d\u4f5b\uff08\u7fe0\u7389\u9576\u91d1\uff09", "goods_cover": "http:\/\/qn.fayuanhui.cn\/efcd450e04ff4aa8b1a689e5c31da9ac.png", "goods_storage": 3, "goods_price": "4666.00" }, { "goods_id": 17, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u51b0\u66dc\u89c2\u97f3", "goods_cover": "http:\/\/qn.fayuanhui.cn\/c3c45db2fc6d98d1ace84ac2446e377d.jpg", "goods_storage": 95, "goods_price": "166.00" }, { "goods_id": 18, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u4e0d\u9000\u83e9\u8428", "goods_cover": "http:\/\/qn.fayuanhui.cn\/10800518fb59ab2d22df128093c59d31.jpg", "goods_storage": 20, "goods_price": "7999.00" }, { "goods_id": 19, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u6c89\u9999", "goods_cover": "http:\/\/qn.fayuanhui.cn\/d6be21a44e2b4b3cb7d42a594a76fc4d.jpg", "goods_storage": 99, "goods_price": "66.00" }, { "goods_id": 20, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u51e4\u773c\u624b\u4e32", "goods_cover": "http:\/\/qn.fayuanhui.cn\/f124951e9c4a2c69e4f267176fba873d.jpg", "goods_storage": 8, "goods_price": "299.00" }, { "goods_id": 21, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u4f5b\u7f18\u5409\u7965\u597d\u8fd0\u4f5b\u724c\uff08\u5973\u6b3e\uff09", "goods_cover": "http:\/\/qn.fayuanhui.cn\/ccb115cebc8a4520ef647113cc032c0e.jpg", "goods_storage": 10, "goods_price": "566.00" }, { "goods_id": 22, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u560e\u4e4c\u76d2\uff08\u5973\u6b3e\uff09", "goods_cover": "http:\/\/qn.fayuanhui.cn\/347a52dd1117d1a95c54e27253620310.jpg", "goods_storage": 10, "goods_price": "599.00" }, { "goods_id": 23, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u82b1\u4e1d\u89c2\u97f3\u83e9\u8428", "goods_cover": "http:\/\/qn.fayuanhui.cn\/a8c8a72e667744700122d26bdda73be5.jpg", "goods_storage": 10, "goods_price": "799.00" }, { "goods_id": 24, "goods_name": "\u5357\u6cc9\u5c71\u5bfa\u91d1\u521a\u83e9\u63d0\u9879\u94fe", "goods_cover": "http:\/\/qn.fayuanhui.cn\/84eee1526ef439d4b31ecde4448b1df3.jpg", "goods_storage": 197, "goods_price": "166.00" }], "per_page": 10, "total": 36 }, "msg": "", "code": 200 }
 	
 	export default {
@@ -61,7 +63,6 @@
 				isSHowSearch: false,
 				searchTxt: "",
 				history: ["撒的发多少", "撒的发多少"],
-				curPage: 0,
 				isLoadData: true,   // 是否可加载数据
 				isLogin: false,
 				totalPages: 1,           // 所有页数
@@ -73,257 +74,9 @@
 		    this.getMsg(0, 0)
 		},
 		methods: {
-			// 删除操作************************************
-			// 勾选单品删除
-			selectDeleted: function (e) {
-			    var that = this;
-			    var goodsId = e.currentTarget.dataset.id;
-			    var flag = e.currentTarget.dataset.deleted;
-			    var product = e.currentTarget.dataset.item;
-			
-			    this.data.cartItems.forEach((item, index) => {
-			        var goods = 'cartItems[' + index + '].List';
-			        if (product.ID == item.ID) {
-			            item.List.forEach((goodsItem, goodsIndex) => {
-			                if (goodsId == goodsItem.ID) {
-			                    var deleted = goods + '[' + goodsIndex + '].deleted';
-			                    if (deleted) {
-			                        that.setData({
-			                            [deleted]: !flag
-			                        })
-			                    }
-			                }
-			            })
-			        }
-			    })
-			
-			    // 检测当前商店
-			    this.checkShopDeleted(product);
-			    // 检测所有
-			    this.checkAllDeleted();
-			},
-			// 勾选商店删除
-			selectShopDeleted: function (e) {
-			    var that = this;
-			    var id = e.currentTarget.dataset.id;
-			    var flag = e.currentTarget.dataset.deleted;
-			    var deleted = "";
-			   
-			    this.data.cartItems.forEach((item, index) => {
-			        deleted = 'cartItems[' + index + '].deleted';
-			        
-			        if (deleted) {
-			            if (id == item.ID) {
-			                console.log(deleted)
-			                that.setData({
-			                    [deleted]: !flag
-			                })
-			            }
-			        }
-			    })
-			
-			    // 检测商店子商品全选非全选
-			    this.checkDeletedGoods(id, flag);
-			
-			    // 检测所有
-			    this.checkAllDeleted();
-			},
-			// 检测商店子商品全选非全选删除状态
-			checkDeletedGoods: function (id, flag) {
-			    var that = this;
-			    this.data.cartItems.forEach((item, index) => {
-			        var goods = 'cartItems[' + index + '].List';
-			        if (id == item.ID) {
-			            item.List.forEach((goodsItem, goodsIndex) => {
-			                var deleted = goods + '[' + goodsIndex + '].deleted';
-			                if (deleted) {
-			                    that.setData({
-			                        [deleted]: !flag
-			                    })
-			                }
-			            })
-			        }
-			    })
-			
-			    // 计算删除数量
-			    this.calTotalDeletedNum()
-			},
-			// 检测商店删除全选非全选
-			checkShopDeleted: function (product) {
-			    // 全部选中则全选点亮
-			    var that = this;
-			    var checkAllFlags = true;
-			    var checkIndex = "";    // 需要检索的商店
-			    this.data.cartItems.forEach((item, index) => {
-			        if (product.ID == item.ID) {
-			            checkIndex = index;
-			            item.List.forEach((goodsItem, goodsIndex) => {
-			                checkAllFlags = checkAllFlags && goodsItem.deleted;
-			            })
-			        }
-			    })
-			
-			    // 操作
-			    var deleted = 'cartItems[' + checkIndex + '].deleted';
-			    if (deleted) {
-			        that.setData({
-			            [deleted]: checkAllFlags
-			        })
-			    }
-			
-			    // 计算删除数量
-			    this.calTotalDeletedNum()
-			},
-			// 检测所有全选非全选
-			checkAllDeleted: function () {
-			    // 全部选中则全选点亮
-			    var that = this;
-			    var checkAllFlags = true;
-			    var checkIndex = "";    // 需要检索的商店
-			    this.data.cartItems.forEach((item, index) => {
-			        item.List.forEach((goodsItem, goodsIndex) => {
-			            checkAllFlags = checkAllFlags && goodsItem.deleted;
-			        })
-			    })
-			
-			    // 操作全选标志
-			    this.setData({
-			        isAllSelectDeleted: checkAllFlags
-			    })
-			},
-			// 计算删除勾选的商品数
-			calTotalDeletedNum: function () {
-			    var that = this;
-			    // var totalMoney = 0;
-			    var totalNum = 0;
-			
-			    // 设置选定数量
-			    that.setData({
-			        totalNum2: totalNum
-			    })
-			
-			    this.data.cartItems.forEach((item, index) => {
-			        var goods = 'cartItems[' + index + '].List';
-			        item.List.forEach((goodsItem, goodsIndex) => {
-			            if (goodsItem.deleted) {
-			                totalNum += 1;
-			                // 设置选定数量
-			                that.setData({
-			                    totalNum2: totalNum
-			                })
-			            }
-			        })
-			    })
-			},
-			// 点击全选 flag:true 选中全选 false 取消全选
-			allSelectDeleted: function (e) {
-			    var that = this;
-			    var flag = e.currentTarget.dataset.flag;
-			    // this.data.allSelectBtn = flag;
-			    var deleted = "";
-			
-			    // 全选标志
-			    this.setData({
-			        isAllSelectDeleted: !flag
-			    })
-			
-			    this.data.cartItems.forEach((item, index) => {
-			        deleted = 'cartItems[' + index + '].deleted';
-			        // 全选商店
-			        if (deleted) {
-			            that.setData({
-			                [deleted]: !flag
-			            })
-			        }
-			
-			        // 全选商品
-			        var goods = 'cartItems[' + index + '].List';
-			        item.List.forEach((goodsItem, goodsIndex) => {
-			            var deleted = goods + '[' + goodsIndex + '].deleted';
-			            if (deleted) {
-			                that.setData({
-			                    [deleted]: !flag
-			                })
-			            }
-			        })
-			    })
-			    // 计算总数量
-			    this.calTotalDeletedNum();
-			},
-			// 删除所选项
-			goDeleted: function () {
-			    var that = this;
-			    var selectGoods = [];
-			    var item = {};
-			    this.data.cartItems.forEach((item, index) => {
-			        item.List.forEach((goodsItem, goodsIndex) => {
-			            if (goodsItem.deleted) {
-			                item.CID = goodsItem.ID
-			                selectGoods.push(item)
-			            }
-			        })
-			    })
-			    wx.showModal({
-			        title: '提示',
-			        content: '确定删除所选项吗？',
-			        confirmColor: "#f6819e",
-			        success: function (res) {
-			            if (res.confirm) {
-			                // 执行删除接口
-			                var url = "deleteCollectGoods.ashx";
-			                var params = new Object();
-			                params.LstCollectGoods = selectGoods;
-			
-			                util.POST({
-			                    url: url,
-			                    params: JSON.stringify(params),
-			                    success: function (res) {
-			                        var oData = res.data[0]
-			                        wx.showToast({
-			                            icon: 'none',
-			                            title: oData.Msg,
-			                            duration: 1000
-			                        })
-			                        if (oData.Status === "200") {
-			                            // 过滤有删除标记的商品
-			                            var newCartItems = [];
-			                            var newGoods = [];
-			                            that.data.cartItems.forEach((item, index) => {
-			                                if (!item.deleted) {
-			                                    newGoods = item.List.filter((goodsItem, goodsIndex) => {
-			                                        return !goodsItem.deleted;
-			                                    })
-			                                    item.List = newGoods;
-			                                    newCartItems.push(item)
-			                                }
-			                            })
-			
-			                            that.setData({
-			                                cartItems: newCartItems
-			                            })
-			                        } else {
-			                            
-			                        }
-			                    },
-			                    fail: function () {
-			                        wx.showToast({
-			                            icon: 'none',
-			                            title: "失败"
-			                        })
-			                    },
-			                })
-			                
-			            } else if (res.cancel) {
-			                console.log('用户点击取消')
-			            }
-			        }
-			    })
-			},
 			getMsg(type, page) {
-			    this.setData({
-			        ["goodsList"]: mockData.data.data
-			    })
-			    console.log(this.data.goodsList)
+			    this.goodsList = mockData.data.data
+			    console.log(this.goodsList)
 			    var that = this;
 			    var url = "getMyCollectionList.ashx";
 			    var params = new Object();
@@ -360,25 +113,19 @@
 			                    })
 			                }
 			            } else {
-			                wx.showToast({
+			                uni.showToast({
 			                    icon: 'none',
 			                    title: oData.Msg,
 			                    duration: 1000
 			                })
 			            }
-			        },
-			        fail: function () {
-			            wx.showToast({
-			                icon: 'none',
-			                title: "失败"
-			            })
-			        },
+			        }
 			    })
 			},
 			goUrl (e) {
 			    var index = e.currentTarget.dataset.index;
 			    var number = e.currentTarget.dataset.number;
-			    wx.navigateTo({
+			    uni.navigateTo({
 			        url: "/pages/goodsDetail/index?index="+index+"&number="+ number,
 			        
 			    })
@@ -386,9 +133,7 @@
 
 			// 切换搜索
 			toggleSearch() {
-			    this.setData({
-			        isSHowSearch: !this.data.isSHowSearch
-			    })
+			    this.isSHowSearch = !this.isSHowSearch
 			},
 			// 清除历史搜索
 			clearHistory() {
@@ -402,25 +147,13 @@
 			        searchTxt: ""
 			    })
 			},
-			// 输入搜索
-			bindKeyInput: function (e) {
-			    this.setData({
-			        searchTxt: e.detail.value
-			    })
-			},
-			changeTab (e) {
-			    var type = e.currentTarget.dataset.type;
-			    this.setData({
-			        curType: type
-			    })
-			},
 			/**
 			 * 页面上拉触底事件的处理函数
 			 */
 			onReachBottom: function () {
-			    if (this.data.isLoadData) {
-			        var type = this.data.curType;
-			        var page = this.data.curPage + 1
+			    if (this.isLoadData) {
+			        var type = this.curType;
+			        var page = this.curPage + 1
 			        this.getMsg(type, page);
 			    }
 			}
@@ -428,13 +161,15 @@
 	}
 </script>
 <style lang="scss">
+	page{
+		background:#fffbf6;
+	}
 	.search-bar{
 	    position: fixed;
 	    width:100%;
 	    top:0;
 	    left:0;
 	    height:132rpx;
-	    background: #c7a769;
 	}
 	.hr130{
 	    height:132rpx;
@@ -449,7 +184,7 @@
 	    height:72rpx;
 	    line-height: 72rpx;
 	    margin:0 auto;
-	    background: #e4d8bf url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAARVBMVEXk2L/Hp2nJqm/VvpHQtoPk1rzi1Ljdyqbbx6HNsXrLrnXj1brZxZ7XwJXYwpjUvI7fz6/ezavMr3jLrXPOs37h07bSuYi5d4yZAAABK0lEQVQ4y42S2xKDIAxE3QgqCN6q/v+nligMKmbafYEwx2RZqS6avLIEssrP1bu0W5D1GfoXprU4RB+Km65gRj63ftbccxoMl3t/H6V4QndtzLNNc4WYGfW998BUf5/lSpcEqFwVTHmubZgV98VEirZc8Kzfs1uB+tyFe3RCwDNA578AbFjEVi2vHvAi5KJdBcwitAELrxbQlSgCpUWWATj1EABXsvPtn07NH57w83YNYGNOgwh1wB6jNyKk0i/7cPTvmgDq04NYxEbpFfQEeMkRmrx/HTjdXuweRrclE8yqXGqDkEM56/6sG6bMfG2jmEm+o/njbHXb+U13luODqhyBRctq4i7Mr59UUxOyqOa7ZyqrHZcDtHvHOQsUu9tSfIkSon5SVP2Up/oL5CMIWTIpOO8AAAAASUVORK5CYII=) 18rpx 18rpx no-repeat;
+	    background: #fbe5c3 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAARVBMVEXk2L/Hp2nJqm/VvpHQtoPk1rzi1Ljdyqbbx6HNsXrLrnXj1brZxZ7XwJXYwpjUvI7fz6/ezavMr3jLrXPOs37h07bSuYi5d4yZAAABK0lEQVQ4y42S2xKDIAxE3QgqCN6q/v+nligMKmbafYEwx2RZqS6avLIEssrP1bu0W5D1GfoXprU4RB+Km65gRj63ftbccxoMl3t/H6V4QndtzLNNc4WYGfW998BUf5/lSpcEqFwVTHmubZgV98VEirZc8Kzfs1uB+tyFe3RCwDNA578AbFjEVi2vHvAi5KJdBcwitAELrxbQlSgCpUWWATj1EABXsvPtn07NH57w83YNYGNOgwh1wB6jNyKk0i/7cPTvmgDq04NYxEbpFfQEeMkRmrx/HTjdXuweRrclE8yqXGqDkEM56/6sG6bMfG2jmEm+o/njbHXb+U13luODqhyBRctq4i7Mr59UUxOyqOa7ZyqrHZcDtHvHOQsUu9tSfIkSon5SVP2Up/oL5CMIWTIpOO8AAAAASUVORK5CYII=) 18rpx 18rpx no-repeat;
 	    background-size: 36rpx 36rpx;
 	    border-radius:8rpx;
 	}

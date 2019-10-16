@@ -1,12 +1,6 @@
 const app = getApp()
 const urlXBase = 'https://ssl.wmgyb.com:444/';
 const urlXApi = urlXBase + 'actions/';
-var userinfo = {};
-var openid = '';
-const appid = 'wxe6ef6576d9467ef0'; //填写微信小程序appid  
-const secret = '615f7d853db8602ea8dd3d45fbe1723c'; //填写微信小程序secret
-
-var API_URL = 'http://localhost/loverule/api/api.php'
 
 var requestHandler = {
     params: {},
@@ -32,10 +26,10 @@ function request(method, requestHandler) {
     var url = urlXApi + requestHandler.url;
     var params = requestHandler.params;
 
-    wx.request({
+    uni.request({
         header: {
             "Content-Type": "application/x-www-form-urlencoded", //post
-            "Authorization": wx.getStorageSync("token")
+            "Authorization": uni.getStorageSync("token")
         }, // 设置请求的 header  
         url: url,
         data: params,
@@ -43,11 +37,11 @@ function request(method, requestHandler) {
         success: function (res) {
             // 分别为200（成功），201（操作失败），500（请求服务器失败）
             if (res.data[0].Status == "201") {
-                wx.showToast({
+                uni.showToast({
                     icon: 'none',
                     title: res.data[0].Msg
                 })
-                wx.redirectTo({
+                uni.redirectTo({
                     url: '/pages/center/login/login'
                 })
             }
@@ -55,7 +49,7 @@ function request(method, requestHandler) {
             requestHandler.success(res)
         },
         fail: function () {
-            wx.showToast({
+            uni.showToast({
                 icon: 'none',
                 title: "失败"
             })
@@ -72,8 +66,8 @@ const setLogin = time => {
     time = parseInt(time);
     let timer = setTimeout(() => {
         clearTimeout(timer)
-        wx.setStorageSync('losetime', 0)
-        wx.setStorageSync("token", "")
+        uni.setStorageSync('losetime', 0)
+        uni.setStorageSync("token", "")
     }, time)
 }
 
@@ -102,7 +96,7 @@ const pay = (data, wxRequestHandler) => {
     var url = "payTrade.ashx"
 
     // get user openid
-    wx.login({
+    uni.login({
         success: function (res) {
             if (res.code) {
                 params.Code = res.code;
@@ -112,7 +106,7 @@ const pay = (data, wxRequestHandler) => {
                     params: JSON.stringify(params),
                     success: function (res) {
                         console.log("success");
-                        wx.requestPayment({
+                        uni.requestPayment({
                             'timeStamp': res.data[0].Data[0].Info.TimeStamp,
                             'nonceStr': res.data[0].Data[0].Info.NonceStr,
                             'package': res.data[0].Data[0].Info.Package,
@@ -128,7 +122,7 @@ const pay = (data, wxRequestHandler) => {
 
                     },
                     fail: function () {
-                        wx.showToast({
+                        uni.showToast({
                             icon: "none",
                             title: "微信支付触发失败"
                         })
@@ -145,13 +139,16 @@ const pay = (data, wxRequestHandler) => {
 
 // 金额加两位数
 const formatMoney = n => {
+	if (!n) {
+		return '0.00'
+	}
     return Number(n).toFixed(2).toString();
 }
 module.exports = {
     GET: GET,
     POST: POST,
-    formatTime: formatTime,
+    formatTime,
     formatMoney,
-    setLogin: setLogin,
+    setLogin,
     PAY: pay,
 }

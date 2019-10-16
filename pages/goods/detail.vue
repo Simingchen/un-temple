@@ -6,11 +6,11 @@
 		<view class="panel main-con">
 		    <view class="clearfix">
 		        <view class="goods-price fl">¥46666.00</view>
-		        <view class="collect fr {{isCollect? 'on': ''}}" bindtap='collect'></view>
+		        <view class="collect fr" :class="{on: isCollect}" @click='collect'></view>
 		    </view> 
 		    <view class="goods-name">南泉寺翡翠8寸圆满观音玉佩观音玉佩观音玉佩</view>   
 		    <view class="goods-tips">默认装藏一年后发货</view>
-		    <view class="line-item arrow clearfix" bindtap="togglePopup">
+		    <view class="line-item arrow clearfix" @click="togglePopup">
 		        <text class="lab">选择规格</text>
 		        <view class="fr">
 		        </view>
@@ -23,15 +23,15 @@
 		<view class="footer-box">
 		    <view class="hr28"></view>
 		    <view class="footer flex-box">
-		        <navigator class="flex-item b1" hover-class="none" url="/pages/goods/cart/index">加入购物车</navigator>
-		        <view class="flex-item b2" bindtap="togglePopup">立即迎请</view>
+		        <navigator class="flex-item b1" hover-class="none" url="/pages/goods/cart">加入购物车</navigator>
+		        <view class="flex-item b2" @click="togglePopup">立即迎请</view>
 		    </view>
 		</view>
-		<view class="popup {{!isShowPopup? 'popup-enter' : ''}}">
-		    <view class="mark" wx:if="{{isShowPopup}}" bindtap="togglePopup"></view>
+		<view class="popup" :class="{'popup-enter': !isShowPopup}">
+		    <view class="mark" v-if="isShowPopup" @click="togglePopup"></view>
 		    <view class="con">
 		        <view class="title">
-		            <image class="close" src="../../../img/close.jpg" bindtap="togglePopup"></image>
+		            <image class="close" src="../../../img/close.jpg" @click="togglePopup"></image>
 		        </view>
 		        <view class="sku-con">
 		            <image class="img" src="http://qn.fayuanhui.cn/2d2da218534518a64eee630d33132d5e.jpg"></image>
@@ -40,13 +40,13 @@
 		                <view class="fl">购买数量</view>
 		                <!-- 数量编辑块 -->
 		                <view class="mui-number fr">
-		                    <text class="decrease" data-id="{{goods.ID}}" data-item="{{item}}" data-type="-1" bindtap="changeQuantity"></text>
+		                    <text class="decrease" @click="changeQuantity(-1)"></text>
 		                    <text type="number" class="num">{{Quantity}}</text>
-		                    <text class="increase" data-id="{{goods.ID}}" data-item="{{item}}" data-type="1" bindtap="changeQuantity"></text>
+		                    <text class="increase" @click="changeQuantity(1)"></text>
 		                </view>
 		            </view>
 		        </view>
-		        <view class="add-btn" bindtap="togglePopup">确定</view>
+		        <view class="add-btn" @click="togglePopup">确定</view>
 		    </view>
 		</view>
 	</view>
@@ -88,23 +88,16 @@
 			},
 			// 切换弹窗
 			togglePopup() {
-			    this.setData({
-			        isShowPopup: !this.data.isShowPopup
-			    })
+			    this.isShowPopup = !this.isShowPopup
 			},
 			// 收藏
 			collect() {
-			    this.setData({
-			        isCollect: !this.data.isCollect
-			    })
+			    this.isCollect = !this.isCollect
 			},
 			// 加减商品数量
-			changeQuantity: function (e) {
-			    console.log("asfd")
+			changeQuantity: function (type) {
 			    var that = this;
-			    var type = e.currentTarget.dataset.type;
-			
-			    var nowNum = this.data.Quantity;
+			    var nowNum = this.Quantity;
 			
 			    if (type > 0) {
 			        nowNum++;
@@ -112,9 +105,7 @@
 			        nowNum > 1 ? nowNum-- : nowNum = 1;
 			    }
 			
-			    that.setData({
-			        ['Quantity']: nowNum
-			    })
+			    that.Quantity = nowNum
 			    // var url = "saveQuantityForCart.ashx";
 			    // var params = {};
 			    // params.OID = goodsId;

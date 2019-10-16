@@ -43,9 +43,9 @@
 		<view class="footer-box">
 		    <view class="hr28"></view>
 		    <view class="footer flex-box">
-		        <navigator class="flex-item b2" url="/pages/lampTemple/orderStamp/index">预约</navigator>
-		        <navigator class="flex-item b1" url="/pages/lampTemple/orderStamp/index">供奉佛龕</navigator>
-		        <navigator class="flex-item b2" url="/pages/lampTemple/orderLamp/index">我要供灯</navigator>
+		        <!-- <navigator class="flex-item b2" url="/pages/lampTemple/orderStamp/index">预约</navigator> -->
+		        <!-- <navigator class="flex-item b1" url="/pages/lampTemple/orderStamp/index">供奉佛龕</navigator> -->
+		        <navigator class="flex-item b2" url="/pages/lampTemple/orderLamp">我要供灯</navigator>
 		    </view>
 		</view>
 	</view>
@@ -129,13 +129,7 @@
 			                    duration: 1000
 			                })
 			            }
-			        },
-			        fail () {
-			            wx.showToast({
-			                icon: 'none',
-			                title: "失败"
-			            })
-			        },
+			        }
 			    })
 			
 				this.curPage = page

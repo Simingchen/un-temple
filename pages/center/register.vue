@@ -2,23 +2,23 @@
 	<view class="page login-page">
 		<view class="login-form">
 			<view>
-				<input class="input-row" data-type="user" bindinput="checkForm" type="number" maxlength="30" placeholder="输入手机号" />
+				<input class="input-row" :value="user" type="number" maxlength="30" placeholder="输入手机号" />
 			</view>
 			<view class="flex-box input-row">
-				<input class="flex-item input" data-type="code" bindinput="bindInput" type="number" maxlength="30" placeholder="验证码" />
-				<view data-disabled="{{isDisabled}}" class="sendcode" bindtap='sendCode'>
-					<block wx:if="{{!codeButtonOn}}">
+				<input class="flex-item input" type="number" maxlength="30" placeholder="验证码" />
+				<view class="sendcode" @click='sendCode(isDisabled)'>
+					<block v-if="!codeButtonOn">
 						获取验证码
 					</block>
-					<block wx:if="{{codeButtonOn}}">
+					<block v-if="codeButtonOn">
 						{{codeTime}}S后再发送
 					</block>
 				</view>
 			</view>
 			<view>
-				<input class="input-row" data-type="password" bindinput="bindInput" type="password" maxlength="20" placeholder="密码8-20位,必须含数字加英文" />
+				<input class="input-row" type="password" maxlength="20" placeholder="密码8-20位,必须含数字加英文" />
 			</view>
-			<button type="button" class="btn login_btn" bindtap="signUp">注册</button>
+			<button type="button" class="btn login_btn" @click="signUp">注册</button>
 		</view>
 	</view>
 </template>
@@ -40,28 +40,15 @@
 
 		},
 		methods: {
-			bindInput: function(e) { // 输入框输入
-				this.setData({
-					[e.currentTarget.dataset.type]: e.detail.value
-				})
-			},
-			checkForm: function(e) { // 验证手机号
-				this.setData({
-					[e.currentTarget.dataset.type]: e.detail.value
-				})
-
+			checkForm: function() { // 验证手机号
 				var type = e.currentTarget.dataset.type;
 				if (type == "user") {
 					var reg = /^1\d{10}$/;
 					var iso = reg.test(e.detail.value);
 					if (iso) {
-						this.setData({
-							['isDisabled']: true
-						})
+						this.isDisabled = true
 					} else {
-						this.setData({
-							['isDisabled']: false
-						})
+						this.isDisabled = false
 					}
 				}
 			},
@@ -74,11 +61,9 @@
 				var type = e.currentTarget.dataset.type;
 				if (e.currentTarget.dataset.disabled) {
 					var data = 'isDisabled'
-					that.setData({
-						['isDisabled']: false
-					})
+					this.isDisabled = false
 
-					var params = new Object();
+					var params = {};
 					var url = "getVerificationCode.ashx"
 					params.Mobile = that.data.user;
 					util.POST({
@@ -88,13 +73,13 @@
 							var oData = res.data[0].Data
 						},
 						fail: function() {
-							wx.showToast({
+							uni.showToast({
 								title: "失败"
 							})
 						},
 					})
 
-					wx.showToast({
+					uni.showToast({
 						title: '发送成功',
 						duration: 1000
 					})
@@ -147,33 +132,14 @@
 					return false;
 				}
 
-				wx.getSystemInfo({
-					success: function(res) {
-						console.log(res)
-						if (res.platform == "devtools") {
-							that.setData({
-								device: "PC"
-							});
-						} else if (res.platform == "ios") {
-							that.setData({
-								device: "IOS"
-							});
-						} else if (res.platform == "android") {
-							that.setData({
-								device: "Android"
-							});
-						}
-					}
-				})
-
-				var params = new Object();
+				var params = {};
 				var url = "register.ashx"
 				params.Mobile = user;
 				params.Password = password;
 				params.DeviceType = that.data.device;
 				params.Code = code;
 
-				wx.showLoading({
+				uni.showLoading({
 					title: "提交中..."
 				})
 
@@ -182,20 +148,20 @@
 					params: JSON.stringify(params),
 					success: function(res) {
 						var oData = res.data[0]
-						wx.showToast({
+						uni.showToast({
 							icon: 'none',
 							title: oData.Msg
 						})
 
 						if (oData.Status == 200) {
-							wx.redirectTo({
+							uni.redirectTo({
 								url: '/pages/center/login/login'
 							})
 						}
-						wx.hideLoading({})
+						uni.hideLoading({})
 					},
 					fail: function() {
-						wx.showToast({
+						uni.showToast({
 							icon: 'none',
 							title: "失败"
 						})
@@ -203,7 +169,7 @@
 				})
 			},
 			alert: function(txt) {
-				wx.showModal({
+				uni.showModal({
 					title: "温馨提示",
 					content: txt,
 					confirmColor: "#f79bb0"
@@ -212,12 +178,12 @@
 		}
 	}
 </script>
-<style>
+<style lang="scss">
 	.input-row {
 		width: 600rpx;
 		height: 75rpx;
 		margin: 0 auto;
-		border: 1px solid #c7a769;
+		border: 1px solid $color;
 		color: #6c6c6c;
 		border-radius: 75rpx;
 		padding: 0 50rpx;
@@ -240,7 +206,7 @@
 		width: 600rpx;
 		height: 75rpx;
 		margin: 0 auto;
-		border: 1px solid #c7a769;
+		border: 1px solid $color;
 		border-radius: 75rpx;
 		padding: 0 50rpx;
 		line-height: 75rpx;
@@ -258,7 +224,7 @@
 	}
 
 	.sign {
-		color: #c7a769;
+		color: $color;
 	}
 
 	.flex-box {
@@ -270,6 +236,6 @@
 	}
 
 	.sendcode {
-		color: #c7a769;
+		color: $color;
 	}
 </style>

@@ -6,10 +6,10 @@
 			<navigator class="btn toActive" url="/login">去登录</navigator>
 		</view>
 		<block v-if="!isLogin">
-			<view class="tab-bar flex-box">
+			<!-- <view class="tab-bar flex-box">
 				<view class="flex-item" :class="{on: curType == 0}" @click='changeTab(0)'>法物</view>
 				<view class="flex-item" :class="{on: curType == 1}" @click='changeTab(1)'>法讯</view>
-			</view>
+			</view> -->
 			<view class="empty" v-if="!goodsList.length">
 				<view class="txt tac">快去收藏吧~</view>
 			</view>
@@ -24,18 +24,6 @@
 							<view class="goods-price">
 								<text>¥{{goods.goods_price}}</text>
 							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="page-content">
-				<view class="list info">
-					<view class="panel item flex-box" v-for="(item,index) in items" :key="index">
-						<image class="img" :src="item.Img"></image>
-						<view class="con flex-item">
-							<view class="tit">{{item.Name}}</view>
-							<view class="see">{{item.see}}</view>
-							<view class="source">{{item.source}}</view>
 						</view>
 					</view>
 				</view>
@@ -134,9 +122,7 @@
 				isMultProduct: 1, // 是否选中并删除多个商品 0为单个删除 1为全部删除 2为失效删除
 				totalPages: 1, // 所有页数
 				curPage: 1, // 当前页数
-				cartItems: [ // 列表数据
-
-				],
+				cartItems: [],
 				goodsList: []
 			}
 		},
@@ -152,7 +138,7 @@
 				var flag = e.currentTarget.dataset.deleted;
 				var product = e.currentTarget.dataset.item;
 
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					var goods = 'cartItems[' + index + '].List';
 					if (product.ID == item.ID) {
 						item.List.forEach((goodsItem, goodsIndex) => {
@@ -180,7 +166,7 @@
 				var flag = e.currentTarget.dataset.deleted;
 				var deleted = "";
 
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					deleted = 'cartItems[' + index + '].deleted';
 
 					if (deleted) {
@@ -202,7 +188,7 @@
 			// 检测商店子商品全选非全选删除状态
 			checkDeletedGoods(id, flag) {
 				var that = this;
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					var goods = 'cartItems[' + index + '].List';
 					if (id == item.ID) {
 						item.List.forEach((goodsItem, goodsIndex) => {
@@ -225,7 +211,7 @@
 				var that = this;
 				var checkAllFlags = true;
 				var checkIndex = ""; // 需要检索的商店
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					if (product.ID == item.ID) {
 						checkIndex = index;
 						item.List.forEach((goodsItem, goodsIndex) => {
@@ -251,7 +237,7 @@
 				var that = this;
 				var checkAllFlags = true;
 				var checkIndex = ""; // 需要检索的商店
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					item.List.forEach((goodsItem, goodsIndex) => {
 						checkAllFlags = checkAllFlags && goodsItem.deleted;
 					})
@@ -273,7 +259,7 @@
 					totalNum2: totalNum
 				})
 
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					var goods = 'cartItems[' + index + '].List';
 					item.List.forEach((goodsItem, goodsIndex) => {
 						if (goodsItem.deleted) {
@@ -290,7 +276,7 @@
 			allSelectDeleted(e) {
 				var that = this;
 				var flag = e.currentTarget.dataset.flag;
-				// this.data.allSelectBtn = flag;
+				// this.allSelectBtn = flag;
 				var deleted = "";
 
 				// 全选标志
@@ -298,7 +284,7 @@
 					isAllSelectDeleted: !flag
 				})
 
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					deleted = 'cartItems[' + index + '].deleted';
 					// 全选商店
 					if (deleted) {
@@ -326,7 +312,7 @@
 				var that = this;
 				var selectGoods = [];
 				var item = {};
-				this.data.cartItems.forEach((item, index) => {
+				this.cartItems.forEach((item, index) => {
 					item.List.forEach((goodsItem, goodsIndex) => {
 						if (goodsItem.deleted) {
 							item.CID = goodsItem.ID
@@ -334,7 +320,7 @@
 						}
 					})
 				})
-				wx.showModal({
+				uni.showModal({
 					title: '提示',
 					content: '确定删除所选项吗？',
 					confirmColor: "#f6819e",
@@ -342,7 +328,7 @@
 						if (res.confirm) {
 							// 执行删除接口
 							var url = "deleteCollectGoods.ashx";
-							var params = new Object();
+							var params = {};
 							params.LstCollectGoods = selectGoods;
 
 							util.POST({
@@ -350,7 +336,7 @@
 								params: JSON.stringify(params),
 								success(res) {
 									var oData = res.data[0]
-									wx.showToast({
+									uni.showToast({
 										icon: 'none',
 										title: oData.Msg,
 										duration: 1000
@@ -372,16 +358,8 @@
 										that.setData({
 											cartItems: newCartItems
 										})
-									} else {
-
 									}
-								},
-								fail() {
-									wx.showToast({
-										icon: 'none',
-										title: "失败"
-									})
-								},
+								}
 							})
 
 						} else if (res.cancel) {
@@ -392,12 +370,12 @@
 			},
 			getMsg(type, page) {
 				this.goodsList = mockData.data.data
-				console.log(this.data.goodsList)
 				var that = this;
 				var url = "getMyCollectionList.ashx";
-				var params = new Object();
-				params.Size = size;
-				params.Page = page;
+				var params = {
+					Size: 10,
+					Page: page
+				};
 				util.POST({
 					url: url,
 					params: JSON.stringify(params),
@@ -429,7 +407,7 @@
 								})
 							}
 						} else {
-							wx.showToast({
+							uni.showToast({
 								icon: 'none',
 								title: oData.Msg,
 								duration: 1000
@@ -437,7 +415,7 @@
 						}
 					},
 					fail() {
-						wx.showToast({
+						uni.showToast({
 							icon: 'none',
 							title: "失败"
 						})
@@ -447,11 +425,10 @@
 			goUrl(e) {
 				var index = e.currentTarget.dataset.index;
 				var number = e.currentTarget.dataset.number;
-				wx.navigateTo({
-					url: "/pages/goodsDetail/index?index=" + index + "&number=" + number,
+				uni.navigateTo({
+					url: "/pages/goods/detail?index=" + index + "&number=" + number,
 				})
 			},
-			
 			changeTab(type) {
 				this.curType = type
 			},
@@ -459,9 +436,9 @@
 			 * 页面上拉触底事件的处理函数
 			 */
 			onReachBottom() {
-				if (this.data.isLoadData) {
-					var type = this.data.curType;
-					var page = this.data.curPage + 1
+				if (this.isLoadData) {
+					var type = this.curType;
+					var page = this.curPage + 1
 					this.getMsg(type, page);
 				}
 			}
@@ -469,6 +446,12 @@
 	}
 </script>
 <style lang="scss">
+	page{
+		background: #etertw ;
+	}
+	.page-content{
+		padding-top:20rpx;
+	}
 	.tab-bar {
 		height: 100rpx;
 		margin-bottom: 20rpx;
@@ -485,28 +468,25 @@
 	.info .item {
 		padding: 30rpx;
 		position: relative;
-	}
-
-	.info .item .img {
-		display: block;
-		width: 200rpx;
-		height: 200rpx;
-		margin-right: 33rpx;
-		background: #999;
-	}
-
-	.info .item .tit {
-		line-height: 48rpx;
-		font-size: 34rpx;
-		color: #2c3e50;
-	}
-
-	.info .item .see {
-		padding-left: 50rpx;
-		margin-top: 67rpx;
-		color: #999;
-		font-size: 26rpx;
-		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAUCAMAAADbT899AAAAclBMVEX///+ZmZmdnZ37+/v09PSfn5/u7u7x8fHp6en4+Pitra2kpKShoaHe3t6+vr6mpqbr6+vW1tbU1NTDw8PAwMCqqqqoqKjl5eXi4uLOzs7Hx8e3t7exsbHa2trLy8vExMS6urr29va0tLSzs7Ojo6PIyMjLnb59AAABFUlEQVQoz31S15LDIAyU6Rhcca+xffn/X7xBjGPfJZN9knZhUQEuULWMtWkONzP4ADrH0QleyTdZTV4h1hhLfDAwetdZ71k+9Yox1U8+qRN96XL1lF1FSIXjPu1fpYgUXR0DmieJoCCR4Ku861Gcgy6PLNtLDaq+1SofqJOBQml8lBVA1wi5igFsjmBiExBjhHhISAJJnhoED+xPDl0dwrgFdbIShP12gAjY0tcT8u2JaGcA4iqyyLDIGagLetP5eeYpR2MFuhibZiywzdAPDYMYOPYkgYquC4NCvdTnKkqDcxEhzSuO/oW+LXP3HvGiGGuXGO9P7Z99ajQh3HIeal42+Af2NNEJM3z8VGx2UxMfaX83/wUxQw8ViRksQQAAAABJRU5ErkJggg==) 0 center no-repeat;
-		background-size: 32rpx 20rpx;
+		.img {
+			display: block;
+			width: 200rpx;
+			height: 200rpx;
+			margin-right: 33rpx;
+			background: #999;
+		}
+		.tit {
+			line-height: 48rpx;
+			font-size: 34rpx;
+			color: #2c3e50;
+		}
+		.see {
+			padding-left: 50rpx;
+			margin-top: 67rpx;
+			color: #999;
+			font-size: 26rpx;
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAUCAMAAADbT899AAAAclBMVEX///+ZmZmdnZ37+/v09PSfn5/u7u7x8fHp6en4+Pitra2kpKShoaHe3t6+vr6mpqbr6+vW1tbU1NTDw8PAwMCqqqqoqKjl5eXi4uLOzs7Hx8e3t7exsbHa2trLy8vExMS6urr29va0tLSzs7Ojo6PIyMjLnb59AAABFUlEQVQoz31S15LDIAyU6Rhcca+xffn/X7xBjGPfJZN9knZhUQEuULWMtWkONzP4ADrH0QleyTdZTV4h1hhLfDAwetdZ71k+9Yox1U8+qRN96XL1lF1FSIXjPu1fpYgUXR0DmieJoCCR4Ku861Gcgy6PLNtLDaq+1SofqJOBQml8lBVA1wi5igFsjmBiExBjhHhISAJJnhoED+xPDl0dwrgFdbIShP12gAjY0tcT8u2JaGcA4iqyyLDIGagLetP5eeYpR2MFuhibZiywzdAPDYMYOPYkgYquC4NCvdTnKkqDcxEhzSuO/oW+LXP3HvGiGGuXGO9P7Z99ajQh3HIeal42+Af2NNEJM3z8VGx2UxMfaX83/wUxQw8ViRksQQAAAABJRU5ErkJggg==) 0 center no-repeat;
+			background-size: 32rpx 20rpx;
+		}
 	}
 </style>

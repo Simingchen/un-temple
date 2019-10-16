@@ -106,30 +106,102 @@
 					"titleNView": false
 				}
 			}
+		},
+		{
+			"path": "pages/center/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/center/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/center/forget",
+			"style": {
+				"navigationBarTitleText": "忘记密码",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/goods/list",
+			"style": {
+				"navigationBarTitleText": "商品列表",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/goods/detail",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/goods/cart",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/goods/order",
+			"style": {
+				"navigationBarTitleText": "下单详情",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/lampTemple/detail",
+			"style": {
+				"navigationBarTitleText": "佛灯详情",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/lampTemple/orderLamp",
+			"style": {
+				"navigationBarTitleText": "供灯",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/lampTemple/lampPosition",
+			"style": {
+				"navigationBarTitleText": "供灯位置",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
 		}
-		
-		
-		
-		// {
-		// 	"path": "pages/center/register/register"
-		// },
-		// {
-		// 	"path": "pages/center/login/login"
-		// },
-		// {
-		// 	"path": "pages/center/forget/forget"
-		// },
 		// {
 		// 	"path": "pages/center/addrNew/addNew"
 		// },
 		// {
-		// 	"path": "pages/center/changePhone/change"
-		// },
-		// {
 		// 	"path": "pages/center/myMes/index"
-		// },
-		// {
-		// 	"path": "pages/center/feedback/index"
 		// },
 		// {
 		// 	"path": "pages/center/myLamp/index"
@@ -145,9 +217,6 @@
 		// },
 		// {
 		// 	"path": "pages/center/myInfor/index"
-		// },
-		// {
-		// 	"path": "pages/goodsCollection/index"
 		// },
 		// {
 		// 	"path": "pages/infor/detail/index"
@@ -169,15 +238,6 @@
 		// },
 		// {
 		// 	"path": "pages/lampTemple/orderDate/index"
-		// },
-		// {
-		// 	"path": "pages/goods/list/index"
-		// },
-		// {
-		// 	"path": "pages/goods/detail/index"
-		// },
-		// {
-		// 	"path": "pages/goods/cart/index"
 		// },
 		// {
 		// 	"path": "pages/goodsDetail/index"
@@ -216,7 +276,7 @@
 			{
 				"selectedIconPath": "img/icon31.png",
 				"iconPath": "img/icon3.png",
-				"pagePath": "pages/infor/list",
+				"pagePath": "pages/goods/list",
 				"text": "法物"
 			},
 			{
