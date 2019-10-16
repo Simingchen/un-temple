@@ -74,7 +74,7 @@
         "title" : "temple",
         "router" : {
             "mode" : "hash",
-            "base" : "pages/home/index"
+            "base" : "/"
         },
         "devServer" : {
             "https" : false,
