@@ -568,7 +568,7 @@ page {
 	border-radius: 29rpx;
 	&.checked {
 		/* background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAS1BMVEUAAAAzhPszhPoyhPsyhPozg/s0hPwyhPw0hvs8h/9Aj/8yg/syg/ozhPsyg/r///+wz/2RvfxTl/pup/vT5P3U5f16r/u91/18sPvWF+94AAAADnRSTlMAvdnFopBcUTsREPPW8utY9+UAAADeSURBVDjLlZTrDoMgDIWpIoqX1svm9v5PumRGD7Aq7vtH8iWnFFoT4p2lousKss4bnZo4gGpFaUpOKJvUqVihipSWWIXawOn5hB4W8Smk16PX1fAl2x3La6n89pA1lpV36rOqJ5ElqN1rziwi7+PkjdOkp8gDJ2esHiYzjtaQHjZFDS2O+yxxGChMtzsiYxQGOjNAkhFhIQPixs1CWBBHHFkIA2QsR9YLYUELHMcWwoJmeo4shAGfPPCIMJT081XWlVPqm58u/31vD0J+pPLDeXPM8wsjv3r+XWL5dfgBB3w3WcIaGhAAAAAASUVORK5CYII=); */
-		background: #f79bb0;
+		background: $color;
 	}
 }
 

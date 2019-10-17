@@ -172,7 +172,7 @@
 				uni.showModal({
 					title: "温馨提示",
 					content: txt,
-					confirmColor: "#f79bb0"
+					confirmColor: "#c40606"
 				})
 			},
 		}

@@ -165,3 +165,32 @@ button:after {
 		color: #999;
 	}
 }
+
+.line-item {
+	background: #fff;
+	padding-left: 30rpx;
+	padding-right: 65rpx;
+	color: #666;
+	line-height: 100rpx;
+	font-size: 27rpx;
+	&.arrow {
+		position: relative;
+		&:before {
+			position: absolute;
+			content: '';
+			right: 33rpx;
+			top: 43rpx;
+			width: 15rpx;
+			height: 15rpx;
+			border-top: 3rpx solid #666;
+			border-right: 3rpx solid #666;
+			transform: rotate(45deg);
+		}
+	}
+	.lab {
+		float: left;
+		line-height: 100rpx;
+		height: 100rpx;
+		color: #000;
+	}
+}

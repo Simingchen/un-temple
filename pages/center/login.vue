@@ -38,7 +38,7 @@
 			        uni.showModal({
 			            title: "温馨提示",
 			            content: "请输入手机号",
-			            confirmColor: "#f79bb0"
+			            confirmColor: "#c40606"
 			        })
 			        return false;
 			    }
@@ -46,7 +46,7 @@
 			        uni.showModal({
 			            title: "温馨提示",
 			            content: "请输入密码",
-			            confirmColor: "#f79bb0"
+			            confirmColor: "#c40606"
 			        })
 			        return false;
 			    }

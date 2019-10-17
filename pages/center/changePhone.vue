@@ -2,11 +2,11 @@
 	<view class="login-page">
 		<view class="panel login-form">
 			<view class="input-row row1">
-				<input data-type="pass" @input="checkForm" type="password" maxlength="30" placeholder="请输入新的密码" />
+				<input v-model.trim="phone" maxlength="30" placeholder="请输入新的手机号码" />
 			</view>
 			<view class="flex-box input-row row2">
-				<input class="flex-item input" data-type="code" @input="bindInput" type="number" maxlength="30" placeholder="请输入验证码" />
-				<view data-disabled="isDisabled" class="sendcode" bindtap='sendCode'>
+				<input class="flex-item input" v-model.trim="code" type="number" maxlength="30" placeholder="请输入验证码" />
+				<view class="sendcode" @click='sendCode'>
 					<block v-if="!codeButtonOn">
 						获取验证码
 					</block>
@@ -16,112 +16,65 @@
 				</view>
 			</view>
 		</view>
-		<button type="button" class="btn login_btn" bindtap="change">保存</button>
+		<button type="button" class="btn login_btn" @click="change">保存</button>
 	</view>
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				user: "",
-				pass: "", // 新密码
-				password: "", // 再次输入密码密码
+				phone: "",
 				code: "",
 				isDisabled: false, // 发送按钮禁止
 				codeButtonOn: false,
 				codeTime: 60,
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
-			bindInput: function(e) { // 输入框输入
-				this.setData({
-					[e.currentTarget.dataset.type]: e.detail.value
-				})
-			},
-			checkForm: function(e) { // 验证手机号
-				this.setData({
-					[e.currentTarget.dataset.type]: e.detail.value
-				})
-
-				var type = e.currentTarget.dataset.type;
-				if (type == "user") {
-					var reg = /^1\d{10}$/;
-					var iso = reg.test(e.detail.value);
-					if (iso) {
-						this.setData({
-							['isDisabled']: true
-						})
-					} else {
-						this.setData({
-							['isDisabled']: false
-						})
+			sendCode () { // 发送验证码
+				if (this.phone == '') {
+					this.alert("请输入手机号")
+					return false;
+				} else {
+					if (!/^1\d{10}$/.test(this.phone)) {
+						this.alert("请输入正确手机号")
 					}
 				}
-			},
-			sendCode: function(e) { // 发送验证码
-				if (!e.currentTarget.dataset.disabled) {
-					this.alert("请输入正确手机号")
-					return false;
-				}
-				var type = e.currentTarget.dataset.type;
-				if (e.currentTarget.dataset.disabled) {
+				
+				if (!this.isDisabled) {
 					var that = this;
-					var data = 'isDisabled'
-					that.setData({
-						['isDisabled']: false
-					})
+					that.isDisabled = false
 					wx.showToast({
 						title: '发送成功',
 						duration: 1000
 					})
-					var time = that.data.codeTime
+					var time = that.codeTime
 
 					var timer = setInterval(function() {
 						time--;
-						that.setData({
-							['codeTime']: time
-						})
-						that.setData({
-							['isDisabled']: false
-						})
-						that.setData({
-							['codeButtonOn']: 1
-						})
+						that.codeTime = time
+						that.isDisabled = false
+						that.codeButtonOn = true
 
 						if (time <= 0) {
 							clearInterval(timer);
-							that.setData({
-								['isDisabled']: true
-							})
-							that.setData({
-								['codeButtonOn']: 0
-							})
+							that.isDisabled = true
+							that.codeButtonOn = false
 						}
 					}, 1E3)
 				}
 			},
 			change: function() {
-				var user = this.data.user;
-				var password = this.data.password;
-				var code = this.data.code;
-				if (!user) {
-					this.alert("请输入新的密码")
+				var phone = this.phone;
+				var password = this.password;
+				var code = this.code;
+				if (!phone) {
+					this.alert("请输入新的手机号码")
 					return false;
 				}
-				if (!password) {
-					this.alert("请再次输入新的密码")
-					return false;
-				}
+				
 				if (!code) {
 					this.alert("请输入验证码")
-					return false;
-				}
-
-				if (password.length < 8) {
-					this.alert("密码长度太短了哦")
 					return false;
 				}
 
@@ -134,7 +87,7 @@
 				wx.showModal({
 					title: "温馨提示",
 					content: txt,
-					confirmColor: "#f79bb0"
+					confirmColor: "#c40606"
 				})
 			},
 		}

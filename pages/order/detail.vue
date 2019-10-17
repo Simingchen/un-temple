@@ -48,10 +48,10 @@
 			</view>
 			<view class="footer-box">
 				<view class="hr75"></view>
-				<button class="order-btn btn" bindtap="goPay" v-if="order.Status == 0">去付款</button>
+				<button class="order-btn btn" @click="goPay" v-if="order.Status == 0">去付款</button>
 				<view class="order-btn btn" v-if="order.Status == 2">待发货</view>
-				<button class="order-btn btn" bindtap="certainOrder" v-if="order.Status == 4">确认收货</button>
-				<view class="order-btn btn" bindtap="certainOrder" v-if="order.Status == 5">已完成</view>
+				<button class="order-btn btn" @click="certainOrder" v-if="order.Status == 4">确认收货</button>
+				<view class="order-btn btn" @click="certainOrder" v-if="order.Status == 5">已完成</view>
 			</view>
 	</view>
 </template>
@@ -154,11 +154,11 @@ export default {
 			wx.showModal({
 				title: '提示',
 				content: '确认收货？',
-				confirmColor: '#f79bb0',
+				confirmColor: '#c40606',
 				success(res) {
 					if (res.confirm) {
 						var url = 'confirmTrade.ashx';
-						var params = new Object();
+						var params = {};
 						params.Number = number;
 						util.POST({
 							url: url,
@@ -178,16 +178,8 @@ export default {
 										duration: 1000
 									});
 								}
-							},
-							fail() {
-								wx.showToast({
-									icon: 'none',
-									title: '失败'
-								});
 							}
 						});
-					} else if (res.cancel) {
-						console.log('用户点击取消');
 					}
 				}
 			});

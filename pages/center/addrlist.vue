@@ -195,14 +195,11 @@ export default {
 				isEmpty: isEmpty
 			});
 		},
-		addNewAddr: function(e) {
+		addNewAddr: function(id) {
 			// 添加新地址还是编辑地址
-			var id = e.currentTarget.dataset.id;
-			var url;
+			var url = '/pages/center/addrNew?back=list';
 			if (id) {
-				url = '/pages/center/addrNew/addNew?back=list&id=' + id;
-			} else {
-				url = '/pages/center/addrNew/addNew?back=list';
+				url = '/pages/center/addrNew?back=list&id=' + id;
 			}
 
 			uni.navigateTo({

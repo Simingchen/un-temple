@@ -16,7 +16,7 @@
 			<image class="img" :src="'../../static/img/jpg_03.jpg'"></image>
 	        <view class="txt">我的冠名</view>
 	    </navigator>
-	    <navigator hover-class="none" class="flex-item" url="/pages/center/myLamp/index">
+	    <navigator hover-class="none" class="flex-item" url="/pages/center/myLamp">
 			<image class="img" :src="'../../static/img/jpg_05.jpg'"></image>
 	        <view  class="txt">我的供灯</view>
 	    </navigator>
@@ -29,7 +29,7 @@
 	    <view class="title">近期供灯</view>
 	    <view class="con">
 	        <view>你还没有供灯哦</view>
-	        <navigator class="btn" open-type="switchTab" hover-class="none" url="/pages/lampTemple/list/index">去供灯</navigator>
+	        <navigator class="btn" open-type="switchTab" hover-class="none" url="/pages/lampTemple/list">去供灯</navigator>
 	    </view>
 	</view>
 	<view class="panel">

@@ -1,12 +1,12 @@
 <template>
 	<view>
 		<view class="panel">
-		    <textarea class="textarea" @input="bindInput(mes)" placeholder='请留下您的宝贵意见和建议，我们将努力改进' maxlength='500'></textarea>
+		    <textarea class="textarea" :value="mes" placeholder='请留下您的宝贵意见和建议，我们将努力改进' maxlength='500'></textarea>
 		</view>
 		<view class="panel">
-		    <input class="input" type="number"  @input="bindInput(phone)" placeholder='请留下您的手机号码，以便我们回复您' maxlength='11'></input>
+		    <input class="input" type="number" :value="phone" placeholder='请留下您的手机号码，以便我们回复您' maxlength='11'></input>
 		</view>
-		<button type="button" class="btn save-btn" bindtap="saveMsg">提交</button>
+		<button type="button" class="btn save-btn" @click="saveMsg">提交</button>
 	</view>
 </template>
 <script>
@@ -14,38 +14,28 @@
 	export default {
 		data() {
 			return {
-				user: {}
+				mes: '',
+				phone: '',
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
-			bindInput(e) { // 修改信息
-			    var type = e.currentTarget.dataset.type;
-			    this.setData({
-			        ['user.' + type]: e.detail.value
-			    })
-			},
 			saveMsg () {
-			    if (!this.data.user.mes) {
+			    if (!this.mes) {
 			        uni.showToast({
 			            icon: "none",
 			            title: "请留下您的宝贵意见和建议，我们将努力改进"
 			        })
 			        return false;
 			    }
-			    if (!this.data.user.phone) {
+			    if (!this.phone) {
 			        uni.showToast({
 			            icon: "none",
 			            title: "请留下你的手机号"
 			        })
 			        return false;
 			    }
-			    console.log()
-			    
 			    var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
-			    if (!phoneReg.test(this.data.user.phone)) {
+			    if (!phoneReg.test(this.phone)) {
 			        uni.showToast({
 			            icon: "none",
 			            title: "请正确填写手机号码"
@@ -55,7 +45,7 @@
 			
 			    var that = this;
 			    var url = "getAddress.ashx"
-			    var params = new Object();
+			    var params = {};
 			    params.RID = id;
 			    util.POST({
 			        url: url,
@@ -75,13 +65,7 @@
 			                    duration: 1000
 			                })
 			            }
-			        },
-			        fail: function () {
-			            uni.showToast({
-			                icon: 'none',
-			                title: "失败"
-			            })
-			        },
+			        }
 			    })
 			}
 		}

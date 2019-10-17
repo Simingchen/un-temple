@@ -63,6 +63,15 @@
 			}
 		},
 		{
+			"path": "pages/center/addrNew",
+			"style": {
+				"navigationBarTitleText": "编辑地址",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
 			"path": "pages/center/feedback",
 			"style": {
 				"navigationBarTitleText": "意见反馈",
@@ -249,7 +258,11 @@
 		// 	"path": "pages/goodsDetail/searchlist/search"
 		// },
 
-	],
+	    ,{
+            "path" : "pages/a/a",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
@@ -258,6 +271,7 @@
 	},
 	"tabBar": {
 		"color": "#666",
+		"fontSize": "12px",
 		"borderStyle": "black",
 		"backgroundColor": "#fff",
 		"selectedColor": "#c40606",
