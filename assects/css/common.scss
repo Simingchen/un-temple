@@ -171,15 +171,15 @@ button:after {
 	padding-left: 30rpx;
 	padding-right: 65rpx;
 	color: #666;
-	line-height: 100rpx;
+	line-height: 118rpx;
 	font-size: 27rpx;
 	&.arrow {
 		position: relative;
 		&:before {
 			position: absolute;
 			content: '';
-			right: 33rpx;
-			top: 43rpx;
+			right: 40rpx;
+			top: 50rpx;
 			width: 15rpx;
 			height: 15rpx;
 			border-top: 3rpx solid #666;
@@ -189,8 +189,8 @@ button:after {
 	}
 	.lab {
 		float: left;
-		line-height: 100rpx;
-		height: 100rpx;
+		line-height: 118rpx;
+		height: 118rpx;
 		color: #000;
 	}
 }

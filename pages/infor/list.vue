@@ -142,7 +142,10 @@
 	.hr130 {
 		height: 132rpx;
 	}
-
+	.search-bar-box{
+		background: #fff;
+		z-index: 10;
+	}
 	.search-box {
 		position: fixed;
 		width: 100%;

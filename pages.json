@@ -99,6 +99,15 @@
 			}
 		},
 		{
+			"path": "pages/center/myLamp",
+			"style": {
+				"navigationBarTitleText": "供灯信息",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
 			"path": "pages/goods/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",
@@ -111,6 +120,15 @@
 			"path": "pages/center/myInfor",
 			"style": {
 				"navigationBarTitleText": "我的信息",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/center/myPanel",
+			"style": {
+				"navigationBarTitleText": "我的功德",
 				"app-plus": {
 					"titleNView": false
 				}
@@ -206,6 +224,7 @@
 				}
 			}
 		}
+		
 		// {
 		// 	"path": "pages/center/addrNew/addNew"
 		// },
@@ -257,11 +276,6 @@
 		// {
 		// 	"path": "pages/goodsDetail/searchlist/search"
 		// },
-
-	    ,{
-            "path" : "pages/a/a",
-            "style" : {}
-        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

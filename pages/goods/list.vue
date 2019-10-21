@@ -5,7 +5,7 @@
 	    <view class="search-bar" :class="{focus: isSHowSearch}">
 	        <view class="search-box flex-box">
 	            <view class="form flex-box flex-item">
-	                <input placeholder='请输入关键字搜索' :focus="isSHowSearch" :value="searchTxt" confirm-type="search" class="flex-item" maxlength="20"></input>
+	                <input placeholder='请输入关键字搜索' :focus="isSHowSearch" :value="searchTxt" confirm-type="search" class="flex-item input" maxlength="20"></input>
 	                <view class="close" @click='clear' @confirm="confirmSearch"></view>
 	            </view> 
 	            <view class="cancel" @click='toggleSearch'>
@@ -38,8 +38,8 @@
 	        </view>
 	    </view>
 	</view>
-	<view class="goods-list" v-if="!isSHowSearch" v-for="(goods, index) in goodsList" :key="index" >
-	    <navigator class="goods-item" hover-class="none" url="/pages/goods/detail">
+	<view class="goods-list" v-if="!isSHowSearch">
+	    <navigator class="goods-item" v-for="(goods, index) in goodsList" :key="index" hover-class="none" url="/pages/goods/detail">
 	        <image class="goods-img" :src="goods.goods_cover"></image>
 	        <view class="con">
 	            <view class="goods-name ellipsis2">
@@ -79,7 +79,7 @@
 			    console.log(this.goodsList)
 			    var that = this;
 			    var url = "getMyCollectionList.ashx";
-			    var params = new Object();
+			    var params = {};
 			    params.Size = size;
 			    params.Page = page;
 			    util.POST({
@@ -93,14 +93,9 @@
 			                })
 			                // 如果页码为1，不进行列表叠加
 			                if (page == 0) {
-			                    that.setData({
-			                        ["cartItems"]: oData.Data
-			                    })
+			                    that.cartItems = oData.Data
 			                } else {
-			                    var data = that.data.ListList.concat(oData.Data[0].List);
-			                    that.setData({
-			                        ["cartItems"]: data
-			                    })
+								that.cartItems = [...that.cartItems, ...oData.Data[0].List]
 			                }
 			
 			                if (oData.Data[0].Page >= oData.Data[0].PageCount - 1) {
@@ -137,15 +132,11 @@
 			},
 			// 清除历史搜索
 			clearHistory() {
-			    this.setData({
-			        history: []
-			    })
+			    this.history = []
 			},
 			// 清除搜索
 			clear() {
-			    this.setData({
-			        searchTxt: ""
-			    })
+			    this.searchTxt = ""
 			},
 			/**
 			 * 页面上拉触底事件的处理函数
@@ -170,6 +161,8 @@
 	    top:0;
 	    left:0;
 	    height:132rpx;
+		z-index: 10;
+		background: #fff;
 	}
 	.hr130{
 	    height:132rpx;
@@ -178,19 +171,22 @@
 	    padding-top:30rpx;
 	    padding-left:20rpx;
 	    display: none;
+		.input{
+			font-size: 28rpx;
+		}
 	}
 	.form{
 	    /* width:710rpx; */
-	    height:72rpx;
-	    line-height: 72rpx;
+	    height:92rpx;
+	    line-height: 92rpx;
 	    margin:0 auto;
-	    background: #fbe5c3 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAARVBMVEXk2L/Hp2nJqm/VvpHQtoPk1rzi1Ljdyqbbx6HNsXrLrnXj1brZxZ7XwJXYwpjUvI7fz6/ezavMr3jLrXPOs37h07bSuYi5d4yZAAABK0lEQVQ4y42S2xKDIAxE3QgqCN6q/v+nligMKmbafYEwx2RZqS6avLIEssrP1bu0W5D1GfoXprU4RB+Km65gRj63ftbccxoMl3t/H6V4QndtzLNNc4WYGfW998BUf5/lSpcEqFwVTHmubZgV98VEirZc8Kzfs1uB+tyFe3RCwDNA578AbFjEVi2vHvAi5KJdBcwitAELrxbQlSgCpUWWATj1EABXsvPtn07NH57w83YNYGNOgwh1wB6jNyKk0i/7cPTvmgDq04NYxEbpFfQEeMkRmrx/HTjdXuweRrclE8yqXGqDkEM56/6sG6bMfG2jmEm+o/njbHXb+U13luODqhyBRctq4i7Mr59UUxOyqOa7ZyqrHZcDtHvHOQsUu9tSfIkSon5SVP2Up/oL5CMIWTIpOO8AAAAASUVORK5CYII=) 18rpx 18rpx no-repeat;
-	    background-size: 36rpx 36rpx;
+	    background: #fbe5c3 url(data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wgARCAAsACwDAREAAhEBAxEB/8QAHAAAAgEFAQAAAAAAAAAAAAAABQYAAQIDBAcJ/8QAGwEAAgMBAQEAAAAAAAAAAAAABQYAAwQBAgf/2gAMAwEAAhADEAAAAPbT5+1NzSEt89GD9akqHZJ0J9VUBGZ7K/bg2gAYYiLF7ugPivz9DaJIxMAnHX7Agybc1gq95pZNDc0A0VMYxInfJCpXDsX1YKbHlzXUpQPhQpKSSSSGTA8qUx//xAA1EAABAgQCBggEBwAAAAAAAAADAQIEBQYRACEHEBITMVEiQUJhcYGhwRUjkdEUIDIzNFKx/9oACAEBAAE/AKWpY9RHcqv3YB/uFt6J34UVIUgJEI0I327Tdsjv9XAaqo+cL+FMQfSytECsi+a5YqegQJDvmEhaqbLdp0Pe6OTm37axuFSFIoRGorhCRbf2I7n5r9MRMUeMiHxUSVXke67nu1aOJ6aIa+SRRFdu27QHL1N4K3FaSxkrn5hgSzC/MZ3Xv731VSJ05o954TpXGwzU5oma+l9ejOEMWcljEToCCqOd3qvDGkY4jVCrGLmIDWv8c1901UBU4Nx8BmBWtVv8dzuCoq/pxPdHG/M6Kkhms2luoCZIngvtiC0aTkhUSNOETOtWu2lxJpPByODSCgWqjeLnLxcvNcVhI5hK5mSJinqUZ3q5huarfJeS65XWtQyxm6HFoVicGnTat58cG0i1GYasYoBqvaYPP1VcSKsJnLJi6LiYh5xlVN+x7r3705LhPhdSyvsnhzN+n2VMTahpzAxzwwQHHFxYRtuHJe/8tDTeOgJwyDAX5R3WIN3Drz8cVXV84lc2dBwbhoxBtXNl8f/EADIRAAECBAIFCgcAAAAAAAAAAAECBAADBRExQRASIYHBBhRRUmFxkbHR4RMgIiMkofD/2gAIAQIBAT8AptNW/WckjE8BBTSqUnbYHxJ4wip0p2dRRG3rDZ+4qVDQEGa2yxHppSU0qlXzA8SfeJk1c5ZWs3J0cn3q1gt1m9to7sxFXbBs+UE4HaN+ipJ53SipHQFbsdPJ2UpTtUzIDzivrCn9hkAOOih1JARzaabdHpDyga6ypubXyOG4xK5PO1K+4oAeMNGkllJ+HLw8+0xVWc9s5K17Qo3B0tqw+bjVCrjt2+8Lr79QsLDuHqTDKquW08rWSoHEHh2x+NUG3WSf7cYc0V3JnFMsaycj8tFdzpLsS0n6VYiKnVHTZ1qItawj/8QAKREAAQMDAgQGAwAAAAAAAAAAAQIDBAAFERIhEDFBoSNRYYGR0RMgwf/aAAgBAwEBPwCZMRER5q6CgqdOJxk9hRhTo41Dsah3NWrQ98/fHefOI6E9hSEJbSEpGAOF1jJT4qeux+6t7xeignmNvjhCP4J2F+o43ZaRH09SR2zVpQUxMnqeFyhq1F5v3+6i3bSnS8Pcf2l3aOlJ0gk/FPvuSF611AktPMhKdiOnF23xXtyMH02pFqipOTk+9PwGXmtKRgjlXjRHvIimLlHcbyvY/rcWG3I5URuKgwI7zGpfPNf/2Q==) 20rpx 24rpx no-repeat;
+	    background-size: 44rpx 44rpx;
 	    border-radius:8rpx;
 	}
 	.form input{
 	    display: block;
-	    height:72rpx;
+	    height:92rpx;
 	    padding-left:90rpx;
 	}
 	.search-input{
@@ -198,31 +194,33 @@
 	    top:30rpx;
 	    left:20rpx;
 	    right:30rpx;
-	    height:72rpx;
+	    height:92rpx;
 	    padding-left:90rpx;
 	}
 	.close{
-	    width: 72rpx;
-	    height: 72rpx;
+	    width: 92rpx;
+	    height: 92rpx;
 	    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAACx0lEQVRYR9WZvY9NURDAf1MICSqroPcRIhI9CgpLIpFYW5DoWKWOAqGwKq2PTkKxS4hN0NiGXiIiFn+AwqqQEMXIMHdz39n73j3n3rvv5bzy3Zk5vzM583HmCC1+qroW2AvsA3YCW4ExYL2b/Q4sAp+A98Ar4LWI/Gy6rKQqqqrpjAOngaPAmkQbv4A54B7wQkQ0RT8JWFWPA5eBXSmLDJB9B1wTkUex9qKAVXULcAs4EGs4UW4eOCcin+v0aoFV9SRwG1hXZ6zl9x/AlIg8GGRnILCqTgMXWoKkqt8QkYv9lPoCq+od4Ezqah3J3xWRs1W2KoFH5NmQr9LTy4D9zN7vyFNtzZwKz3QPsGeDN0MIsNiNWCDuKWePEPjlCqauWMhQbl5EDhZ/LgF7UXjY1OoK600UxeUfsJfbt5EV7ItVJ2ATYOlnVSLsH8DSpdmxqml26n5WEXdbGS+ADwPP6rT8u1UkKyS20WPATAK0wU6KyBPXn/IKGrP0ERF5XgDPAhMxWl77rxSyCdA9sA581b0cs/SsiEyKt4jWAsZ2XVUL13m6iU64Cevyxgz4kLV5MVssyaQApMjWYYwb8HUPnjrh8HsMSIxMyrrTBvzUG/EUxUJ2EJDJLAVYwyANmeYMeAHY1oTWdfpBU2SDjmDNzEcDtoDb0ALYVJdBl+0lZJI6jG8GbNG3uk4y4nsldIewhvA7S+CvfjWPcGJfkWEdiUXz8AdgewvaYQbdQpZpLbvCkV1ptvlYPs2PVyHraU9EBp6NlrpqL88DNyPX/d9eOvCoGnhrSx9HAvc08AY+iivSJWBzBHDvFcm9bJPJPC6hxQ5VNZ9rvnvZxqr5DFIc2sareYyqSkdjFGPWMPbihoEl6HzGrSP2dLOBdgk6nyeDEnQ+jzLBZTKPZ68AOp+HxTDvlJ5u9wM7/Ol2Y2mCbxN0uzN29nT7F1CKspwex1OuAAAAAElFTkSuQmCC) no-repeat 50%;
 	    background-size: 36rpx auto;
 	}
 	.cancel{
 	    width:126rpx;
-	    font-size: 36rpx;
+	    font-size: 30rpx;
 	    padding: 0 24rpx 0 30rpx;
-	    color: #fff;
-	    line-height: 72rpx;
+	    color: #333;
+	    line-height: 92rpx;
 	    display: none;
 	}
-	.focus .cancel{
-	    display: block;
-	}
-	.focus .search-input{
-	    display: none;
-	}
-	.focus .search-box{
-	    display: flex;
+	.focus {
+		.cancel{
+		    display: block;
+		}
+		.search-input{
+		    display: none;
+		}
+		.search-box{
+		    display: flex;
+		}
 	}
 	.info .item{
 	    padding:30rpx;

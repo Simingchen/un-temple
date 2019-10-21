@@ -2,41 +2,22 @@
 	<view>
 		<view class="panel top-bar flex-box">
 		    <view class="flex-item">
-		        <image src="../../../img/0763_03.jpg"></image>
+				<image class="icon" src="/static/img/1_03.png"></image>
 		        <view class="txt">剩余位置</view>
 		        <view class="num">1028</view>
 		    </view>
 		    <view class="flex-item">
-		        <image src="../../../img/759_03.jpg"></image>
+		        <image class="icon" src="/static/img/i_07.jpg"></image>
 		        <view class="txt">已选</view>
 		        <view class="num">0</view>
 		    </view>
 		    <view class="flex-item">
-		        <image src="../../../img/0763_05.jpg"></image>
+		        <image class="icon" src="/static/img/i_09.jpg"></image>
 		        <view class="txt">已售</view>
 		        <view class="num">28</view>
 		    </view>
 		</view>
-		<view class="panel positon-panel">
-		    <view class="flex-box positon-tab">
-		        <view class="flex-item on">
-		            <text class="txt">推荐层数</text>
-		        </view>
-		        <view class="flex-item">
-		            <text class="txt">全部灯位</text>
-		        </view>
-		    </view>
-		    <view class="position-list">
-		        <view class="clearfix">
-		            <view class="item" v-for="(item, index) in floor" :key="index">
-		                {{item}}
-		            </view>
-		        </view>
-		        <view class="toggle">
-		            <text class="on"></text>
-		            收起
-		        </view>
-		    </view>
+		<view class="positon-panel">
 		    <view class="lamp-list">
 		        <view class="lift">
 		            <view class="item" v-for="(item, index) in floor" :key="index">
@@ -45,22 +26,14 @@
 		        </view>
 		        <view class="lamps clearfix">
 		            <scroll-view class="scroll" scroll-x>
-		                <view class="item">
-		                    <image src="../../../img/0763_05.jpg"></image>
-		                    <view class="no">18-001</view>
-		                </view>
-		                <view class="item">
-		                    <image src="../../../img/0763_03.jpg"></image>
-		                    <view class="no">18-001</view>
-		                </view>
+						<view v-for="(item, index) in floor" :key="index">
+						    <view class="item" v-for="(lamp, i) in LampList" :key="i" @click="selectLamp(lamp)">
+						        <image class="icon" src="/static/img/i_24.jpg"></image>
+						        <view class="no">{{item}}-{{lamp}}</view>
+						    </view>
+						</view>
 		            </scroll-view>
 		        </view>
-		    </view>
-		</view>
-		<view class="footer-box">
-		    <view class="hr28"></view>
-		    <view class="footer flex-box">
-		        <view class="b2" bindtap='saveOrder'>确认支付</view>
 		    </view>
 		</view>
 	</view>
@@ -70,39 +43,29 @@
 	export default{
 		data() {
 			return{
-				floor: [],
-				user:{
-				    name: "",
-				    led: ""
-				},
+				floor: [1,2,3,4,5,6,7,8,9,10],
+				LampList: [1,2,3,4,5,6,7,8,9,10],
 			}
 		},
 		onLoad (options) {
-		    this.getMsg();
+		    // this.getMsg();
 		},
 		methods: {
 			getMsg: function () {
-			    var that = this;
-			    var url = "getMember.ashx"
-			    util.POST({
-			        url: url,
-			        success: function (res) {
-			            var oData = res.data[0]
-			
-			            if (oData.Status == 200) {
-			                that.setData({
-			                    user: oData.Data[0]
-			                })
-			            } else {
-			                wx.showToast({
-			                    icon: 'none',
-			                    title: oData.Msg,
-			                    duration: 1000
-			                })
-			            }
-			        },
-			    })
+			    // var that = this;
+			    // var url = "getMember.ashx"
+			    // util.POST({
+			    //     url: url,
+			    //     success: function (res) {
+			    //     },
+			    // })
 			},
+			// 选择灯位
+			selectLamp (lamp) {
+				uni.navigateTo({
+				    url: '/pages/lampTemple/orderLamp?id=' + lamp
+				});
+			}
 		}
 	}
 </script>
@@ -112,20 +75,21 @@
 	}
 	.top-bar{
 	    text-align: center;
-	}
-	.top-bar image{
-	    width:88rpx;
-	    height:70rpx;
-	    background: #999;
-	}
-	.top-bar .txt{
-	    color:#666;
-	    line-height: 60rpx;
-	    font-size: 30rpx;
-	}
-	.top-bar .num{
-	    font-size: 34rpx;
-	    font-weight: 700;
+		box-shadow: 1rpx 1rpx 60rpx rgba(227,157,78,.5);
+		.icon{
+		    width:125rpx;
+		    height:115rpx;
+		    background: #999;
+		}
+		.txt{
+		    color:#666;
+		    line-height: 60rpx;
+		    font-size: 30rpx;
+		}
+		.num{
+		    font-size: 34rpx;
+		    font-weight: 700;
+		}
 	}
 	.positon-tab{
 	    width:514rpx;
@@ -151,78 +115,57 @@
 	    border:1rpx solid #e0e0e0;
 	    border-radius: 6rpx;
 	    font-size: 32rpx;
+		&:nth-child(6n){
+		    margin-right: 0;
+		}
 	}
-	.position-list .item:nth-child(6n){
-	    margin-right: 0;
-	}
-	.position-list .toggle{
-	    position: relative;
-	    text-align: center;
-	}
-	.position-list .toggle text{
-	    padding-left:32rpx;
-	    background:url(data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wgARCAAOABgDAREAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQQH/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAA1oJFiMYBz//EACkQAAEDAwICCwAAAAAAAAAAAAIBAwQABSEREiJBEBMUIzEyNUJRVGH/2gAIAQEAAT8AuFwat7G9zJLgATxJa7JdPUus7/6/LZ8Vb7g1cGN4YJMGHMVqBAJ+UU6aaOu68Ap5QTonwCZlDOhGjTuvGPtNP2v/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AF//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AF//2Q==) 0 center no-repeat;
-	    background-size: 24rpx 14rpx!important;
-	}
-	.position-list .toggle text.on{
-	    background: url(data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMZaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkMyMjdCNkY4QzAwMTExRTg5NTMyODhDRDUwRUIzQTAxIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkMyMjdCNkY3QzAwMTExRTg5NTMyODhDRDUwRUIzQTAxIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSIxNzlGM0U3OENGRTg4ODk5QjlBNjc1NjlCQTlDNzdCRSIgc3RSZWY6ZG9jdW1lbnRJRD0iMTc5RjNFNzhDRkU4ODg5OUI5QTY3NTY5QkE5Qzc3QkUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAOABgDAREAAhEBAxEB/8QAXwABAQAAAAAAAAAAAAAAAAAABgcBAQAAAAAAAAAAAAAAAAAAAAAQAAAFAgQFBQAAAAAAAAAAAAERAgMEEhMAFAUVMVFxMgYhYSJzFhEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AvLcuf41PsT1qkaNIWbEnipoeTghgFmYYtXqwtFVcP4l1wBNUuf5NPsQVqjaNHWb0kPRTo8kngEeqBp4wHtxFIQ6Seq4dQwAXJOZWjcHPyVVdy25c+vtqL3IsA60vb8gzt4pyZE1R29RwH//Z) 0 center no-repeat;
+	.positon-panel{
+		background: #fff;
 	}
 	.lamp-list{
 	    position: relative;
-	    height:2832rpx;
+		.lift{
+		    position: absolute;
+			left:8rpx;
+			top:8rpx;
+		    width:40rpx;
+		    padding-top:32rpx;
+		    text-align: center;
+		    color:#fff;
+		    background: #1c1e1d;
+			.item{
+			    margin-bottom:82rpx;
+				&:last-child{
+					margin-bottom:44rpx;
+				}
+			}
+		}
 	}
 	.scroll{
 	    width:100%;
-	    height:2832rpx;
-	}
-	.lamp-list .lift{
-	    position: absolute;
-	    width:40rpx;
-	    padding:40rpx 0;
-	    text-align: center;
-	    color:#fff;
-	    background: #bfbfbf;
-	    border-radius:40rpx;
-	}
-	.lamp-list .lift .item{
-	    margin-bottom:130rpx;
+		white-space: nowrap;
+		.item {
+			display: inline-block;
+		}
 	}
 	.lamps {
 	    padding-left:60rpx;
-	}
-	.lamps .item{
-	    float:left;
-	    width:100rpx;
-	    height:140rpx;
-	    margin-bottom:20rpx;
-	    margin-right: 30rpx;
-	    text-align: center;
-	}
-	.lamps .item image{
-	    width:100rpx;
-	    height:80rpx;
-	    background: #999;
-	}
-	.lamps .item .no{
-	    line-height: 44rpx;
-	    font-size: 20rpx;
-	}
-	.hr28{
-	    height: 120rpx;
-	}
-	.footer{
-	    position: fixed;
-	    width:100%;
-	    bottom:0;
-	    height: 100rpx;
-	    font-size: 36rpx;
-	    line-height: 100rpx;
-	    color: #fff;
-	    text-align: center;
-	}
-	.footer .b2{
-	    width:100%;
-	    text-align: center;
-	    background: #bd151d;
+		.item{
+		    width:77rpx;
+		    height:96rpx;
+		    margin-bottom:20rpx;
+		    margin-right: 30rpx;
+		    text-align: center;
+			color:#666;
+			.icon{
+			    width:60rpx;
+			    height:70rpx;
+			    background: #999;
+			}
+			.no{
+			    line-height: 44rpx;
+			    font-size: 20rpx;
+			}
+		}
 	}
 </style>

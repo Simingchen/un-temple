@@ -12,9 +12,9 @@
 	    </navigator>
 	</view>
 	<view class="panel flex-box main-tab">
-	    <navigator hover-class="none" class="flex-item" url="/pages/center/myStamp/index">
+	    <navigator hover-class="none" class="flex-item" url="/pages/center/myPanel">
 			<image class="img" :src="'../../static/img/jpg_03.jpg'"></image>
-	        <view class="txt">我的冠名</view>
+	        <view class="txt">我的功德</view>
 	    </navigator>
 	    <navigator hover-class="none" class="flex-item" url="/pages/center/myLamp">
 			<image class="img" :src="'../../static/img/jpg_05.jpg'"></image>
