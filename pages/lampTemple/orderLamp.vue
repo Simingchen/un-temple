@@ -249,6 +249,7 @@ page {
 	line-height: 100rpx;
 	color: #fff;
 	text-align: center;
+	z-index:10;
 	.b1 {
 		font-size: 30rpx;
 		color: #2c3e50;

@@ -67,10 +67,7 @@
 			getOrderList: function(page, size) {
 				var that = this;
 				var url = "api/getOrderList"
-				var params = new Object();
-				params.Page = page;
-				params.Size = size;
-
+				var params = {};
 				util.POST({
 					url: url,
 					params: JSON.stringify(params),

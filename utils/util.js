@@ -42,7 +42,7 @@ function request(method, requestHandler) {
                     title: res.data[0].Msg
                 })
                 uni.redirectTo({
-                    url: '/pages/center/login/login'
+                    url: '/pages/center/login'
                 })
             }
             //注意：可以对参数解密等处理  
@@ -53,22 +53,12 @@ function request(method, requestHandler) {
                 icon: 'none',
                 title: "失败"
             })
-            requestHandler.fail()
+            // requestHandler.fail()
         },
         complete: function () {
             // complete  
         }
     })
-}
-
-// 设置登录超时
-const setLogin = time => {
-    time = parseInt(time);
-    let timer = setTimeout(() => {
-        clearTimeout(timer)
-        uni.setStorageSync('losetime', 0)
-        uni.setStorageSync("token", "")
-    }, time)
 }
 
 const formatTime = date => {
@@ -149,6 +139,5 @@ module.exports = {
     POST: POST,
     formatTime,
     formatMoney,
-    setLogin,
     PAY: pay,
 }

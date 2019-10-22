@@ -86,8 +86,6 @@
 			    var that = this;
 			    var url = "getMyCollectionList.ashx";
 			    var params = {};
-			    params.Size = size;
-			    params.Page = page;
 			    util.POST({
 			        url: url,
 			        params: JSON.stringify(params),

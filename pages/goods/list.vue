@@ -38,7 +38,7 @@
 	        </view>
 	    </view>
 	</view>
-	<view class="goods-list" v-if="!isSHowSearch">
+	<view class="goods-list clearfix" v-if="!isSHowSearch">
 	    <navigator class="goods-item" v-for="(goods, index) in goodsList" :key="index" hover-class="none" url="/pages/goods/detail">
 	        <image class="goods-img" :src="goods.goods_cover"></image>
 	        <view class="con">
@@ -80,8 +80,6 @@
 			    var that = this;
 			    var url = "getMyCollectionList.ashx";
 			    var params = {};
-			    params.Size = size;
-			    params.Page = page;
 			    util.POST({
 			        url: url,
 			        params: JSON.stringify(params),

@@ -164,7 +164,7 @@
 		{
 			"path": "pages/goods/list",
 			"style": {
-				"navigationBarTitleText": "商品列表",
+				"navigationBarTitleText": "法物",
 				"app-plus": {
 					"titleNView": false
 				}
@@ -224,58 +224,6 @@
 				}
 			}
 		}
-		
-		// {
-		// 	"path": "pages/center/addrNew/addNew"
-		// },
-		// {
-		// 	"path": "pages/center/myMes/index"
-		// },
-		// {
-		// 	"path": "pages/center/myLamp/index"
-		// },
-		// {
-		// 	"path": "pages/center/myStamp/index"
-		// },
-		// {
-		// 	"path": "pages/center/editMsg/editMsg"
-		// },
-		// {
-		// 	"path": "pages/center/editTxt/editTxt"
-		// },
-		// {
-		// 	"path": "pages/center/myInfor/index"
-		// },
-		// {
-		// 	"path": "pages/infor/detail/index"
-		// },
-		// {
-		// 	"path": "pages/lampTemple/detail/index"
-		// },
-		// {
-		// 	"path": "pages/lampTemple/orderLamp/index"
-		// },
-		// {
-		// 	"path": "pages/lampTemple/orderStamp/index"
-		// },
-		// {
-		// 	"path": "pages/lampTemple/lampPosition/index"
-		// },
-		// {
-		// 	"path": "pages/lampTemple/lampBless/index"
-		// },
-		// {
-		// 	"path": "pages/lampTemple/orderDate/index"
-		// },
-		// {
-		// 	"path": "pages/goodsDetail/index"
-		// },
-		// {
-		// 	"path": "pages/goodsDetail/search/search"
-		// },
-		// {
-		// 	"path": "pages/goodsDetail/searchlist/search"
-		// },
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -288,28 +236,28 @@
 		"fontSize": "12px",
 		"borderStyle": "black",
 		"backgroundColor": "#fff",
-		"selectedColor": "#c40606",
+		"selectedColor": "#b95749",
 		"list": [{
-				"selectedIconPath": "img/icon11.png",
-				"iconPath": "img/icon1.png",
+				"selectedIconPath": "static/tab/t_07.png",
+				"iconPath": "static/tab/t_071.png",
 				"pagePath": "pages/home/index",
 				"text": "首页"
 			},
 			{
-				"selectedIconPath": "img/icon21.png",
-				"iconPath": "img/icon2.png",
+				"selectedIconPath": "static/tab/t_12.png",
+				"iconPath": "static/tab/t_121.png",
 				"pagePath": "pages/lampTemple/list",
 				"text": "佛灯"
 			},
 			{
-				"selectedIconPath": "img/icon31.png",
-				"iconPath": "img/icon3.png",
+				"selectedIconPath": "static/tab/t_09.png",
+				"iconPath": "static/tab/t_091.png",
 				"pagePath": "pages/goods/list",
 				"text": "法物"
 			},
 			{
-				"selectedIconPath": "img/icon41.png",
-				"iconPath": "img/icon4.png",
+				"selectedIconPath": "static/tab/t_03.png",
+				"iconPath": "static/tab/t_031.png",
 				"pagePath": "pages/center/mine",
 				"text": "个人中心"
 			}

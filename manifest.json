@@ -55,9 +55,12 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx883c61037630f19d",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : true,
+            "minified" : true,
+            "postcss" : true,
+            "es6" : true
         },
         "usingComponents" : true
     },
@@ -81,9 +84,9 @@
             "port" : 8080
         },
         "domain" : "127.0.0.1",
-        "optimization": {
-            "treeShaking": {
-                "enable": true
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
             }
         }
     }

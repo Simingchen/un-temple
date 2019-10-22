@@ -10,7 +10,7 @@
 				<image class="img" :src="'../../static/img/i_35.jpg'"></image>
 				<text class="lab">个人供灯信息</text>
 			</navigator>
-			<navigator class="line-item arrow" hover-class="none" url="/pages/lampTemple/lampPosition">
+			<navigator class="line-item arrow" hover-class="none" url="/pages/center/changePhone">
 				<image class="img i2" :src="'../../static/img/i_40.jpg'"></image>
 				<text class="lab">绑定手机号</text>
 			</navigator>
