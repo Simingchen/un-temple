@@ -35,19 +35,19 @@
 	<view class="panel">
 	    <view class="title">我的法物</view>
 	    <view class="tab-list flex-box">
-	        <navigator class="flex-item" url="/pages/order/list?type=-1">
+	        <navigator class="flex-item" hover-class="none"  url="/pages/order/list?type=-1">
 				<image class="img" :src="'../../static/img/jpg_13.jpg'"></image>
 	            <view >全部订单</view>
 	        </navigator>
-	        <navigator class="flex-item" url="/pages/order/list?type=0">
+	        <navigator class="flex-item" hover-class="none"  url="/pages/order/list?type=0">
 				<image class="img" :src="'../../static/img/15.jpg'"></image>
 	            <view >等待支付</view>
 	        </navigator>
-	        <navigator class="flex-item" url="/pages/order/list?type=1">
+	        <navigator class="flex-item" hover-class="none"  url="/pages/order/list?type=1">
 				<image class="img" :src="'../../static/img/17.jpg'"></image>
 	            <view >等待发货</view>
 	        </navigator>
-	        <navigator class="flex-item" url="/pages/order/list?type=2">
+	        <navigator class="flex-item" hover-class="none"  url="/pages/order/list?type=2">
 				<image class="img" :src="'../../static/img/jpg_15.jpg'"></image>
 	            <view >等待收货</view>
 	        </navigator>
