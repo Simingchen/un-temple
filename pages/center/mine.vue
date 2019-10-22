@@ -109,6 +109,7 @@
 </script>
 <style lang="scss">
 	page{
+		background: $bg;
 	    padding-bottom:20rpx;
 	}
 	.user-top{

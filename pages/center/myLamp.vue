@@ -23,13 +23,16 @@
 					<view class="name">{{item.temple}}</view>
 					<view calss="master">
 						收福人： <text class="c9a">{{item.owner}}</text>
-						<text>类型：<text class="c9a">{{item.type}}</text></text>
+						<text class="ml20">类型：<text class="c9a">{{item.type}}</text></text>
 					</view>
 					<view class="time-box">
-						剩余时长：12：2435：3124
+						剩余时长：
+						<min-countdown :targetTime="item.time" @callback="timeEnd(1)" :format="format"></min-countdown>
 					</view>
-					<image class="type-img" :src="'../../static/img/i_19.jpg'"></image>
-					<view class="go-btn">再次点灯</view>
+					<template v-if="item.isEnd==1">
+						<image class="type-img" src="/static/img/i_19.jpg"></image>
+						<view class="go-btn">再次点灯</view>
+					</template>
 				</view>
 	        </view>
 	    </block>
@@ -37,7 +40,9 @@
 </template>
 <script>
 	const util = require('@/utils/util.js');
+	import minCountdown from '@/components/min-countdown/min-countdown.vue'
 	export default {
+		components: {minCountdown},
 		data() {
 			return {
 				isLogin: 0,
@@ -47,8 +52,24 @@
 						temple: '敦化正觉寺',
 						owner: '彭原因',
 						type: '学业灯',
+						time: new Date().getTime() + 18976754328,
+					},
+					{
+						temple: '敦化正觉寺',
+						owner: '彭原因',
+						type: '学业灯',
+						isEnd: 1,
+						time: new Date().getTime() + 0,
 					}
-				]
+				],
+				format: `
+					<div class="time-box">
+						<span style="text-align:center;color:#fff;background: #333;padding:0 2px;">{%d0}{%d1}{%d2}</span> 天
+						<span style="text-align:center;color:#fff;background: #333;padding:0 2px;">{%h0}{%h1}</span> 时
+						<span style="text-align:center;color:#fff;background: #333;padding:0 2px;">{%m0}{%m1}</span> 分
+						<span style="text-align:center;color:#fff;background: #333;padding:0 2px;">{%s0}{%s1}</span> 秒
+					</div>
+				`
 			}
 		},
 		onLoad (options) {
@@ -103,12 +124,22 @@
 			        }
 			    })
 			},
+			// 时间结束
+			timeEnd (id) {
+				console.log(id)
+			}
 		}
 	}
 </script>
 <style lang="scss">
 	page{
 		background: #fbf7ef;
+	}
+	.ml20{
+		margin-left:30rpx;
+	}
+	.c9a{
+		color:$color;
 	}
 	.tab-bar{
 	    height:120rpx;
@@ -166,5 +197,9 @@
 			top:0;
 			right:20rpx;
 		}
+	}
+	.time-box{
+		color:#333;
+		
 	}
 </style>

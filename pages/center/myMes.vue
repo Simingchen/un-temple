@@ -23,6 +23,7 @@
 	export default {
 		data() {
 			return {
+				isLogin: 0,
 				curType: 0,
 				goodsList: []
 			}
