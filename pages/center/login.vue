@@ -2,10 +2,10 @@
 	<view class="page login-page">
 	    <view class="login-form">
 	        <view>
-	            <input class="input-row" :value="user" type="text" maxlength="30" placeholder="输入手机号" value="1355643758"/>
+	            <input class="input-row" v-model="user" type="text" maxlength="30" placeholder="输入手机号" value="1355643758"/>
 	        </view>
 	        <view>
-	            <input  class="input-row" :value="password" @confirm="login" type="password" maxlength="20" placeholder="输入密码"/>
+	            <input  class="input-row" v-model="password" @confirm="login" type="password" maxlength="20" placeholder="输入密码"/>
 	        </view>
 	        <button type="button" class="btn login_btn" @click="login">登录</button>
 	        <view class="bot clearfix">
